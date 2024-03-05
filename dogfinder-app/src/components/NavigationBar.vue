@@ -1,32 +1,38 @@
 <template>
         <div class="card flex justify-content-center">
-                <Button icon="pi pi-bars" @click="visible = true" />
-                <Sidebar v-model:visible="visible">
-                        <template #header>
-                                <h2>Dog Finder App</h2>
-                        </template>
-                        <PanelMenu :model="items" class="w-full md:w-20rem">
+                <Button icon="pi pi-bars" @click="visible = !visible" :style="{ position: 'absolute', top: '0rem', left: '0rem' }" />
+                <div style="position: relative;">
 
-                                <template #item="{ item }">
-                                        <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route"
-                                                custom>
-                                                <a v-ripple
-                                                        class="flex align-items-center cursor-pointer text-color px-3 py-2"
-                                                        :href="href" @click="navigate">
-                                                        <span :class="item.icon" />
-                                                        <span class="ml-2 text-color">{{ item.label }}</span>
-                                                </a>
-                                        </router-link>
-                                        <a v-else v-ripple
-                                                class="flex align-items-center cursor-pointer text-color px-3 py-2"
-                                                :href="item.url" :target="item.target">
-                                                <span :class="item.icon" />
-                                                <span class="ml-2">{{ item.label }}</span>
-                                                <span v-if="item.items" class="pi pi-angle-down text-primary ml-auto" />
-                                        </a>
+                        
+                        <Sidebar v-model:visible="visible" :showCloseIcon="false">
+                                <template #header>
+                                        <h2>Dog Finder App</h2>
                                 </template>
-                        </PanelMenu>
-                </Sidebar>
+                                <Button icon="pi pi-bars" @click="visible = !visible" :style="{ position: 'absolute', top: '0rem', right: '0rem' }" />
+                                <PanelMenu :model="items" class="w-full md:w-20rem">
+
+                                        <template #item="{ item }">
+                                                <router-link v-if="item.route" v-slot="{ href, navigate }"
+                                                        :to="item.route" custom>
+                                                        <a v-ripple
+                                                                class="flex align-items-center cursor-pointer text-color px-3 py-2"
+                                                                :href="href" @click="navigate">
+                                                                <span :class="item.icon" />
+                                                                <span class="ml-2 text-color">{{ item.label }}</span>
+                                                        </a>
+                                                </router-link>
+                                                <a v-else v-ripple
+                                                        class="flex align-items-center cursor-pointer text-color px-3 py-2"
+                                                        :href="item.url" :target="item.target">
+                                                        <span :class="item.icon" />
+                                                        <span class="ml-2">{{ item.label }}</span>
+                                                        <span v-if="item.items"
+                                                                class="pi pi-angle-down text-primary ml-auto" />
+                                                </a>
+                                        </template>
+                                </PanelMenu>
+                        </Sidebar>
+                </div>
 
         </div>
 </template>
