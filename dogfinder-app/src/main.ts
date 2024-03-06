@@ -10,6 +10,7 @@ import Dropdown from 'primevue/dropdown';
 import Button from 'primevue/button';
 import Sidebar from 'primevue/sidebar';
 import PanelMenu from 'primevue/panelmenu'
+import InputSwitch from 'primevue/inputswitch';
 
 
 import 'primevue/resources/themes/saga-blue/theme.css';
@@ -23,6 +24,7 @@ app.component('Dropdown', Dropdown);
 app.component('Button', Button);
 app.component('Sidebar', Sidebar);
 app.component('PanelMenu', PanelMenu);
+app.component('InputSwitch', InputSwitch);
 
 app.use(PrimeView)
 app.use(createPinia())

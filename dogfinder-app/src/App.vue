@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import NavigationBar from './components/NavigationBar.vue';
+import { RouterView } from 'vue-router'
+import SettingsMenu from './components/SettingsMenu.vue';
 </script>
 
 <template>
-        <NavigationBar />
+        <SettingsMenu />
 
         <RouterView />
 </template>
-
-<style scoped></style>
