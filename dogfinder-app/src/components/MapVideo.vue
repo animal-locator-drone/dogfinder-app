@@ -1,30 +1,22 @@
 <template>
-        <!-- <Card> -->
+        <div v-if="map_view" class="main-view-video">
+                <VideoStream />
+        </div>
+        <div v-else class="main-view-map">
+                <MapView />
+        </div>
 
-                <!-- <template #content> -->
-                        <div v-if="map_view" class="map-view-main">
-                                <VideoStream />
-                        </div>
-                        <div v-else class="map-view-main">
-                                <MapView />
-                        </div>
-                <!-- </template> -->
-        <!-- </Card> -->
 
         <Dialog v-model:visible="visible" :closable="false" :style="{ width: '24rem', height: '15rem' }"
                 :draggable="true">
 
-                <Card>
+                <div v-if="map_view" class="mini-view-map">
+                        <MapView />
+                </div>
+                <div v-else class="mini-view-video">
+                        <VideoStream />
+                </div>
 
-                        <template #content>
-                                <div v-if="map_view" class="map-view-mini">
-                                        <MapView />
-                                </div>
-                                <div v-else class="map-view-mini">
-                                        <VideoStream />
-                                </div>
-                        </template>
-                </Card>
 
                 <div class="flex justify-between items-center switch-screens">
                         <Button @click="switch_map_video" icon="pi pi-arrow-up-left" severity="secondary" outlined />
@@ -57,19 +49,32 @@ const switch_map_video = () => {
         top: 0rem;
         left: 0rem;
 }
-.map-view-mini {
-        position: fixed;
-        bottom: 0rem;
-        left: 0rem;
-        width: 100%;
-        height: 85%;
+.mini-view-map {
+        /* disable scrollbar */
+        /* overflow: hidden; */
+        position: relative;
+        height: 10rem;
+        width: 20rem;
+        display: grid;
 }
-.map-view-main {
-        position: fixed;
-        bottom: 0rem;
-        left: 0rem;
-        width: 100%;
+.mini-view-video {
+        /* disable scrollbar */
+        /* overflow: hidden; */
+        position: relative;
         height: 100%;
+        width: 100%;
+        display: grid;
 }
 
+.main-view-video {
+        display: grid;
+        height: 35rem;
+        /* height: 50%; */
+}
+
+.main-view-map {
+        display: grid;
+        height: 35rem;
+        width: 50rem;
+}
 </style>
