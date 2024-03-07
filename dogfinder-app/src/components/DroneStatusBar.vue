@@ -2,11 +2,8 @@
         <v-layout>
                 <v-system-bar class="status-bar">
                         <v-icon class="pi pi-bars"></v-icon>
-                        <v-icon 
-                                icon="mdi-signal"
-                                class="ms-2">
-                        </v-icon>
-                        <v-icon icon="mdi-battery" class="ms-2"></v-icon>
+                        <v-icon class="pi pi-calculator"></v-icon>
+                        <v-icon class="pi pi-clock"></v-icon>
 
                         <span class="ms-2">3:13PM</span>
                 </v-system-bar>
