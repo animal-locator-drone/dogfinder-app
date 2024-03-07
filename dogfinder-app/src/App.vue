@@ -13,7 +13,7 @@
                         <i class="pi pi-bars"></i>
                         </v-app-bar-nav-icon>
 
-                        <v-app-bar-title>Application</v-app-bar-title>
+                        <v-app-bar-title>Dogfinder App</v-app-bar-title>
                 </v-app-bar>
 
                 <v-main>
