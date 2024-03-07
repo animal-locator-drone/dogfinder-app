@@ -22,6 +22,7 @@ import ConfirmDialog from 'primevue/confirmdialog'
 import Panel from 'primevue/panel';
 import Dialog from 'primevue/dialog';
 import Card from 'primevue/card'
+import VirtualScroller from 'primevue/virtualscroller'
 
 import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
 import 'leaflet/dist/leaflet.css';
@@ -72,6 +73,7 @@ app.component('Dialog', Dialog);
 app.component('LMap', LMap);
 app.component('LTileLayer', LTileLayer);
 app.component('Card', Card);
+app.component('VirtualScroller', VirtualScroller);
 
 app.use(vuetify)
 app.use(PrimeView)
