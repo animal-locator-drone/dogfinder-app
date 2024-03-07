@@ -4,7 +4,7 @@
                 <div class="font-medium text-500 mb-3">
                         <Dropdown v-model="selected_mission" :options="missions" optionLabel="name"
                                 placeholder="Select a Mission" class="w-full md:w-14rem" />
-                        <router-link to="/" target="_blank" rel="noopener">
+                        <router-link to="/mission" target="_blank" rel="noopener">
                                 <Button label="Confirm" :disabled="!selected_mission" @click="confirm_selection" />
                         </router-link>
 
