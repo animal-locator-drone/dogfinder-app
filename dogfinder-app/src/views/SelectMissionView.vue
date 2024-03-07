@@ -4,9 +4,9 @@
                 <div class="font-medium text-500 mb-3">
                         <Dropdown v-model="selected_mission" :options="missions" optionLabel="name"
                                 placeholder="Select a Mission" class="w-full md:w-14rem" />
-                        <router-link to="/mission" target="_blank" rel="noopener">
-                                <Button label="Confirm" :disabled="!selected_mission" @click="confirm_selection" />
-                        </router-link>
+                        <Button 
+                                @click="confirm_selection"
+                                label="Confirm Selection" class="mt-3" />
 
                 </div>
                 <div style="height: 150px" class="border-2 border-dashed surface-border"></div>
@@ -15,6 +15,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const selected_mission = ref()
 
@@ -26,7 +29,7 @@ const missions = [
 
 const confirm_selection = () => {
         console.log('Selected Mission:', selected_mission.value)
-
+        router.push('/mission')
 }
 
 </script>
