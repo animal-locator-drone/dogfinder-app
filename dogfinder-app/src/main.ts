@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import PrimeView from 'primevue/config'
+import ConfirmationService from 'primevue/confirmationservice'
+
 
 import App from './App.vue'
 import router from './router'
@@ -16,6 +18,8 @@ import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import ColumnGroup from 'primevue/columngroup'
 import Row from 'primevue/row'
+import ConfirmDialog from 'primevue/confirmdialog'
+
 
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -34,8 +38,10 @@ app.component('DataTable', DataTable);
 app.component('Column', Column);
 app.component('ColumnGroup', ColumnGroup);
 app.component('Row', Row);
+app.component('ConfirmDialog', ConfirmDialog);
 
 app.use(PrimeView)
+app.use(ConfirmationService)
 app.use(createPinia())
 app.use(router)
 

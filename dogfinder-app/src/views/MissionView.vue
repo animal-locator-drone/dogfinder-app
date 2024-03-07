@@ -6,11 +6,15 @@
         <!-- DogFinder Component -->
         <DogFinder />
         <!-- AbortMission Component -->
-        <AbortMission />
+        <div class="flex justify-center abort-button">
+                <AbortMission />
+        </div>
+        
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import AbortMission from '@/components/AbortMission.vue'
 
 const selected_mission = ref()
 
@@ -28,3 +32,11 @@ const confirm_selection = () => {
 }
 
 </script>
+
+<style scoped>
+        .abort-button {
+                position: absolute;
+                bottom: 0rem;
+                right: 0rem;
+        }
+</style>
