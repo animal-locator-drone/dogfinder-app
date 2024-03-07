@@ -7,7 +7,7 @@ import ConfirmationService from 'primevue/confirmationservice'
 import App from './App.vue'
 import router from './router'
 
-
+// PrimeVue components
 import Dropdown from 'primevue/dropdown';
 import Button from 'primevue/button';
 import Sidebar from 'primevue/sidebar';
@@ -19,14 +19,37 @@ import Column from 'primevue/column'
 import ColumnGroup from 'primevue/columngroup'
 import Row from 'primevue/row'
 import ConfirmDialog from 'primevue/confirmdialog'
+import Panel from 'primevue/panel';
 
 
+
+// PrimeVue CSS
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 import "primeflex/primeflex.css";
 
+
+
+// Vuetify Components
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
+
 const app = createApp(App)
+
+const vuetify = createVuetify({
+        components,
+        directives,
+        icons: {
+                defaultSet: 'mdi',
+                aliases,
+                sets: {
+                        mdi
+                },
+        },
+})
 
 app.component('Dropdown', Dropdown);
 app.component('Button', Button);
@@ -40,6 +63,7 @@ app.component('ColumnGroup', ColumnGroup);
 app.component('Row', Row);
 app.component('ConfirmDialog', ConfirmDialog);
 
+app.use(vuetify)
 app.use(PrimeView)
 app.use(ConfirmationService)
 app.use(createPinia())
