@@ -21,8 +21,11 @@ import Row from 'primevue/row'
 import ConfirmDialog from 'primevue/confirmdialog'
 import Panel from 'primevue/panel';
 import Dialog from 'primevue/dialog';
+import Card from 'primevue/card'
 
-
+import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
+import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.js';
 
 // PrimeVue CSS
 import 'primevue/resources/themes/saga-blue/theme.css';
@@ -66,6 +69,9 @@ app.component('Row', Row);
 app.component('ConfirmDialog', ConfirmDialog);
 app.component('Panel', Panel);
 app.component('Dialog', Dialog);
+app.component('LMap', LMap);
+app.component('LTileLayer', LTileLayer);
+app.component('Card', Card);
 
 app.use(vuetify)
 app.use(PrimeView)
