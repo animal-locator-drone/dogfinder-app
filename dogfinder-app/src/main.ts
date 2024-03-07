@@ -62,6 +62,7 @@ app.component('Column', Column);
 app.component('ColumnGroup', ColumnGroup);
 app.component('Row', Row);
 app.component('ConfirmDialog', ConfirmDialog);
+app.component('Panel', Panel);
 
 app.use(vuetify)
 app.use(PrimeView)
