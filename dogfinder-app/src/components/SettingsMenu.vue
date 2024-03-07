@@ -7,7 +7,7 @@
 
                         <Sidebar v-model:visible="visible" :showCloseIcon="false">
                                 <template #header>
-                                        <h2>Dog Finder App</h2>
+                                        <h2>App Settings</h2>
                                 </template>
                                 <Button icon="pi pi-bars" @click="visible = !visible"
                                         :style="{ position: 'absolute', top: '0rem', right: '0rem' }" />
