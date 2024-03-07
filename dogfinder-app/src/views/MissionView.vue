@@ -4,7 +4,7 @@
         <!-- DogFinder Component -->
         <!-- <DogFinder /> -->
         <!-- AbortMission Component -->
-        <div class="flex justify-center abort-button">
+        <div class="abort-button">
                 <AbortMission />
         </div>
         
@@ -19,13 +19,9 @@ import MapVideo from '@/components/MapVideo.vue'
 
 <style scoped>
         .abort-button {
-                position: absolute;
+                position: fixed;
                 bottom: 0rem;
                 right: 0rem;
-        }
-        .drone-status-bar {
-                position: fixed;
-                top: 0rem;
-                left: 0rem;
+                z-index: 9999;
         }
 </style>
