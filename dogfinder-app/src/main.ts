@@ -20,6 +20,7 @@ import ColumnGroup from 'primevue/columngroup'
 import Row from 'primevue/row'
 import ConfirmDialog from 'primevue/confirmdialog'
 import Panel from 'primevue/panel';
+import Dialog from 'primevue/dialog';
 
 
 
@@ -51,6 +52,7 @@ const vuetify = createVuetify({
         },
 })
 
+// PrimeVue components added to the app
 app.component('Dropdown', Dropdown);
 app.component('Button', Button);
 app.component('Sidebar', Sidebar);
@@ -63,6 +65,7 @@ app.component('ColumnGroup', ColumnGroup);
 app.component('Row', Row);
 app.component('ConfirmDialog', ConfirmDialog);
 app.component('Panel', Panel);
+app.component('Dialog', Dialog);
 
 app.use(vuetify)
 app.use(PrimeView)
