@@ -9,6 +9,11 @@ const router = createRouter({
         alias: '/',
         name: 'select_mission',
         component: () => import('../views/SelectMissionView.vue')
+    },
+    {
+        path: '/mission',
+        name: 'mission',
+        component: () => import('../views/MissionView.vue')
     }
   ]
 })
