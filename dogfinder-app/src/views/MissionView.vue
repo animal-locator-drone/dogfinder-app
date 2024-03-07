@@ -1,16 +1,12 @@
 <template>
-        <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
-                <div class="text-3xl font-medium text-900 mb-3">Select A Search Mission</div>
-                <div class="font-medium text-500 mb-3">
-                        <Dropdown v-model="selected_mission" :options="missions" optionLabel="name"
-                                placeholder="Select a Mission" class="w-full md:w-14rem" />
-                        <router-link to="/" target="_blank" rel="noopener">
-                                <Button label="Confirm" :disabled="!selected_mission" @click="confirm_selection" />
-                        </router-link>
-
-                </div>
-                <div style="height: 150px" class="border-2 border-dashed surface-border"></div>
-        </div>
+        <!-- DroneStatusBar Component -->
+        <DroneStatusBar />
+        <!-- MapVideo Component -->
+        <MapVideo />
+        <!-- DogFinder Component -->
+        <DogFinder />
+        <!-- AbortMission Component -->
+        <AbortMission />
 </template>
 
 <script setup lang="ts">
