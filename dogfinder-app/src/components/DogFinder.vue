@@ -54,19 +54,19 @@
 
 <script setup lang="ts">
 
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 
-const dogFound = ref(false)
+// const dogFound = ref(false)
 
-const dog_found = () => {
-        console.log('Dog found')
-        dogFound.value = true
-}
+// const dog_found = () => {
+//         console.log('Dog found')
+//         dogFound.value = true
+// }
 
-const dismiss_dog = () => {
-        console.log('Dog dismissed')
-        dogFound.value = false
-}
+// const dismiss_dog = () => {
+//         console.log('Dog dismissed')
+//         dogFound.value = false
+// }
 
 const dog_detections = computed(() => {
         return [
