@@ -18,7 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import AbortMission from '@/components/AbortMission.vue'
 import MapVideo from '@/components/MapVideo.vue'
 import DogFinder from '@/components/DogFinder.vue'
