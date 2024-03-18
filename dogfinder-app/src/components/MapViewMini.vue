@@ -1,10 +1,10 @@
 <template>
-        <!-- <div class="mymap"> -->
+        <div class="mymap">
                 <l-map ref="map" v-model:zoom="zoom" :center="[47.41322, -1.219482]">
                         <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base"
                                 name="OpenStreetMap"></l-tile-layer>
                 </l-map>
-        <!-- </div> -->
+        </div>
 </template>
 
 <script setup lang="ts">
@@ -30,4 +30,10 @@ const zoom = ref(13);
 </script>
 
 <style scoped>
+.mymap {
+  height: 100%;
+  width: 100%;
+  margin: 0%;
+  padding: 0%;
+}
 </style>

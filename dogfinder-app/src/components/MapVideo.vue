@@ -1,20 +1,30 @@
 <template>
         <div v-if="map_view" class="main-view-video">
-                <VideoStream />
+                <VideoStreamBig />
         </div>
         <div v-else class="main-view-map">
-                <MapView />
+                <MapViewBig />
         </div>
 
 
-        <Dialog v-model:visible="visible" :closable="false" :style="{ width: '24rem', height: '15rem' }"
+        <Dialog 
+                class="pipdialog"
+                v-model:visible="visible"
+                :closable="false" 
+                :style="{
+                        width: '23rem',
+                        height: '16rem',
+                        bottom: '0rem',
+                        right: '0rem',
+                        display: 'flex',
+                }"
                 :draggable="true">
 
                 <div v-if="map_view" class="mini-view-map">
-                        <MapView />
+                        <MapViewMini />
                 </div>
                 <div v-else class="mini-view-video">
-                        <VideoStream />
+                        <VideoStreamMini />
                 </div>
 
 
@@ -27,9 +37,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
-import MapView from '@/components/MapView.vue'
-import VideoStream from '@/components/VideoStream.vue'
+import MapViewBig from '@/components/MapViewBig.vue'
+import MapViewMini from '@/components/MapViewMini.vue'
+import VideoStreamBig from '@/components/VideoStreamBig.vue'
+import VideoStreamMini from '@/components/VideoStreamMini.vue'
 
 const visible = ref(true)
 
@@ -49,6 +60,7 @@ const switch_map_video = () => {
         top: 0rem;
         left: 0rem;
 }
+
 .mini-view-map {
         /* disable scrollbar */
         /* overflow: hidden; */
@@ -56,6 +68,8 @@ const switch_map_video = () => {
         height: 10rem;
         width: 20rem;
         display: grid;
+        margin: 0%;
+        padding: 0%;
 }
 .mini-view-video {
         /* disable scrollbar */
