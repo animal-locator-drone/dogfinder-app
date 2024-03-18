@@ -1,5 +1,11 @@
 {
   "files": [],
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
   "references": [
     {
       "path": "./tsconfig.node.json"
@@ -7,5 +13,6 @@
     {
       "path": "./tsconfig.app.json"
     }
-  ]
+  ],
+  
 }
