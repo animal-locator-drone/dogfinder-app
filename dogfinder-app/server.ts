@@ -6,20 +6,10 @@ ViteExpress.config({mode: 'development'});
 const app = express();
 const PORT = 3000;
 
-// Set the view engine to ejs
-// app.set('view engine', 'ejs');
-// app.set('views', './templates');
-
-// Serve static files from the "static" directory
-// app.use('/static', express.static('static'));
-
 // Middleware to parse JSON bodies
 app.use(express.json());
 
 // Routes
-// app.get('/', (req: Request, res: Response) => {
-//     res.render('index', { request: req });
-// });
 
 app.get('/missions_available', (req: Request, res: Response) => {
     res.json({
@@ -64,11 +54,6 @@ app.get('/detections', (req: Request, res: Response) => {
 app.post('/abort_mission', (req: Request, res: Response) => {
     res.json({ status: "success" });
 });
-
-// Start the server
-// app.listen(port, () => {
-//     console.log(`Server is running at http://localhost:${port}`);
-// });
 
 ViteExpress.listen(app, PORT, () => {
         console.log(`Server is running at http://localhost:${PORT}`);
