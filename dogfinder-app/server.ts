@@ -18,7 +18,9 @@ interface Mission {
 
 app.get('/missions_available', (req: Request, res: Response) => {
         const missions: Mission[] = [
-                { id: "123", name: "Path A", path_preview: "TODO" }
+                { id: "123", name: "Path A", path_preview: "TODO" },
+                { id: "456", name: "Path B", path_preview: "TODO" },
+                { id: "789", name: "Path C", path_preview: "TODO" }
         ];
         res.json({missions});
 });
