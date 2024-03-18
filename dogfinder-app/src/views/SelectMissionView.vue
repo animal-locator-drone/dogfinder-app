@@ -9,7 +9,9 @@
                                 label="Confirm Selection" class="mt-3" />
 
                 </div>
-                <div style="height: 150px" class="border-2 border-dashed surface-border"></div>
+                <div style="height: 150px" class="border-2 border-dashed surface-border">
+                Map Preview Here
+                </div>
         </div>
 </template>
 
