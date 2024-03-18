@@ -1,6 +1,6 @@
 # dogfinder-app
 
-frontend app for the animal locator drone.
+frontend app plus backend server for animal locator drone
 
 ## Overview
 
@@ -44,8 +44,8 @@ frontend app for the animal locator drone.
 
 1. Run the dev server
    1. make sure you're in the right folder `dogfinder-app/dogfinder-app`
-   2. `yarn dev`
-      1. This will launch a dev server locally that you can access with the displayed url/port in the terminal.
+   2. `yarn start`
+      1. This will launch the backend server locally in development mode that you can access with the displayed url/port in the terminal.
       2. Open your browser to the displayed url of course.
 
 #### How the code is organized
@@ -53,7 +53,8 @@ frontend app for the animal locator drone.
 1. Everything in the root folder is configuration files and documentation
    1. except for the `index.html` file
       1. This is the entry point for the app.
-2. `src` contains most of the typescript code base that makes up the app and it is also organized nicely.
+2. `server.js` is the backend web server written using express.
+3. `src` contains most of the typescript code base that makes up the app and it is also organized nicely.
    1. `assets`
       1. contains static files like css and images
    2. `components`
@@ -69,10 +70,10 @@ frontend app for the animal locator drone.
       1. This is the main file for Vuejs this is where things start.
    7. `main.ts`
       1. This file is how the app is initialized and we can add other extensions to vue such as the vue-router
-3. `public`
+4. `public`
    1. This is where the code that runs on the browser gets deployed.
    2. You should never have to edit this folder this is outputted by vuejs
-4. `node_modules`
+5. `node_modules`
    1. this is where yarn packages are stored.
    2. Never touch these if you value your sanity.
-5. you may also see a `.vscode` folder this is where vscode settings get stored and has nothing to do with the project.
+6. you may also see a `.vscode` folder this is where vscode settings get stored and has nothing to do with the project.
