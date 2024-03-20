@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@vue-leaflet/vue-leaflet": "^0.10.1",
+    "bufferutil": "^4.0.8",
     "express": "^4.18.3",
     "leaflet": "^1.9.4",
     "nodemon": "^3.1.0",
@@ -23,7 +24,9 @@
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primevue": "^3.49.1",
+    "socket.io": "^4.7.5",
     "tsx": "^4.7.1",
+    "utf-8-validate": "^6.0.3",
     "vite-express": "^0.15.0",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5",
