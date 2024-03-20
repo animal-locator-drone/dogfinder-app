@@ -1,10 +1,40 @@
 import express, { Request, Response } from 'express';
+import { getSystemErrorMap } from 'util';
 import ViteExpress from 'vite-express';
+import { Server } from 'socket.io';
+
+import { createServer } from 'http';
+
+
+
 
 ViteExpress.config({ mode: 'development' });
 
 const app = express();
 const PORT = 3000;
+
+const httpServer = createServer(app);
+
+
+
+// initialize socket.io
+
+const io = new Server(httpServer, {
+        cors: {
+                origin: "http://localhost:3000",
+                methods: ["GET", "POST"]
+        }
+});
+
+io.attach(3001);
+
+// handle socket.io connections
+io.on('connection', (socket) => {
+        console.log('a user connected');
+        socket.on('disconnect', () => {
+                console.log('user disconnected');
+        });
+});
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -22,7 +52,7 @@ app.get('/missions_available', (req: Request, res: Response) => {
                 { id: "456", name: "Path B", path_preview: "TODO" },
                 { id: "789", name: "Path C", path_preview: "TODO" }
         ];
-        res.json({missions});
+        res.json({ missions });
 });
 
 
@@ -75,6 +105,12 @@ app.get('/detections', (req: Request, res: Response) => {
 
 app.post('/abort_mission', (req: Request, res: Response) => {
         res.json({ status: "success" });
+});
+
+app.post('/new_detection', (req: Request, res: Response) => {
+        res.json({ status: "success" });
+        console.log(req.body);
+        io.emit('new_detection', req.body);
 });
 
 ViteExpress.listen(app, PORT, () => {
