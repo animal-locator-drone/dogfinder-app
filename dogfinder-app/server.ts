@@ -95,10 +95,11 @@ app.get('/detections', (req: Request, res: Response) => {
                         location: [123, 123],
                         time: "timeUTC",
                         images: [
-                                "www.link.to/image.png",
-                                "www.link.to/another_image.png"
+                                "https://www.w3schools.com/w3images/lights.jpg",
+                                "https://www.w3schools.com/w3images/nature.jpg",
+                                "https://www.w3schools.com/w3images/mountains.jpg",
                         ],
-                }
+                },
         ];
         res.json({ detections });
 });
