@@ -14,17 +14,6 @@ import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
 
 const zoom = ref(13);
 
-// export default {
-//   components: {
-//     LMap,
-//     LTileLayer,
-//   },
-//   data() {
-//     return {
-//       zoom: 2,
-//     };
-//   },
-// };
 </script>
 
 <style>
