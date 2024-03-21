@@ -24,6 +24,8 @@ import Card from 'primevue/card'
 import VirtualScroller from 'primevue/virtualscroller'
 import Galleria from 'primevue/galleria'
 import Divider from 'primevue/divider'
+import Splitter from 'primevue/splitter'
+import SplitterPanel from 'primevue/splitterpanel'
 
 import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
 import 'leaflet/dist/leaflet.css';
@@ -75,6 +77,8 @@ app.component('Card', Card);
 app.component('VirtualScroller', VirtualScroller);
 app.component('Galleria', Galleria);
 app.component('Divider', Divider);
+app.component('Splitter', Splitter);
+app.component('SplitterPanel', SplitterPanel);
 
 app.use(vuetify)
 app.use(PrimeView)
