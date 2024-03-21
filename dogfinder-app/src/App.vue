@@ -27,6 +27,11 @@ import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 import SettingsMenu from './components/SettingsMenu.vue';
 import DroneStatusBar from '@/components/DroneStatusBar.vue';
+import { use_detections_store } from '@/stores/detections';
+
+const detections_store = use_detections_store();
+
+detections_store.fetch_detections();
       
 const drawer = ref(false)
 </script>
