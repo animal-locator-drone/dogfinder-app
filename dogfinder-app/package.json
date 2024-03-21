@@ -15,6 +15,11 @@
     "start:dev": "nodemon --watch server.ts --exec tsx server.ts"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-regular-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/vue-fontawesome": "^3.0.6",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "bufferutil": "^4.0.8",
     "express": "^4.18.3",

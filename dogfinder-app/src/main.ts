@@ -27,6 +27,24 @@ import Divider from 'primevue/divider'
 import Splitter from 'primevue/splitter'
 import SplitterPanel from 'primevue/splitterpanel'
 
+// FontAwesome components
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+import { 
+        faBatteryFull,
+        faBatteryThreeQuarters,
+        faBatteryHalf,
+        faBatteryQuarter,
+        faBatteryEmpty,
+        faClock,
+        faMapMarkerAlt,
+        faWifiStrong,
+        faPlane
+} from '@fortawesome/free-solid-svg-icons'
+
+
+// Leaflet components
 import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/leaflet.js';
@@ -79,6 +97,23 @@ app.component('Galleria', Galleria);
 app.component('Divider', Divider);
 app.component('Splitter', Splitter);
 app.component('SplitterPanel', SplitterPanel);
+
+// FontAwesome components added to the app
+library.add(
+        faBatteryFull,
+        faBatteryThreeQuarters,
+        faBatteryHalf,
+        faBatteryQuarter,
+        faBatteryEmpty,
+        faClock,
+        faMapMarkerAlt,
+        faWifiStrong,
+        faPlane
+        
+)
+
+app.component('FontAwesomeIcon', FontAwesomeIcon)
+
 
 app.use(vuetify)
 app.use(PrimeView)
