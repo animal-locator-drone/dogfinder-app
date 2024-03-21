@@ -1,12 +1,8 @@
 import express, { Request, Response } from 'express';
-import { getSystemErrorMap } from 'util';
 import ViteExpress from 'vite-express';
 import { Server } from 'socket.io';
 
 import { createServer } from 'http';
-
-
-
 
 ViteExpress.config({ mode: 'development' });
 
@@ -14,8 +10,6 @@ const app = express();
 const PORT = 3000;
 
 const httpServer = createServer(app);
-
-
 
 // initialize socket.io
 
@@ -54,7 +48,6 @@ app.get('/missions_available', (req: Request, res: Response) => {
         ];
         res.json({ missions });
 });
-
 
 app.post('/select_mission', (req: Request, res: Response) => {
         res.json({ status: "Mission Started" });

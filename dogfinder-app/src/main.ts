@@ -3,7 +3,6 @@ import { createPinia } from 'pinia'
 import PrimeView from 'primevue/config'
 import ConfirmationService from 'primevue/confirmationservice'
 
-
 import App from './App.vue'
 import router from './router'
 
@@ -35,8 +34,6 @@ import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 import "primeflex/primeflex.css";
-
-
 
 // Vuetify Components
 import { createVuetify } from 'vuetify'

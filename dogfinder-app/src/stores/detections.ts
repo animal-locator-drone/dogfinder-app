@@ -1,6 +1,4 @@
-import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { id } from 'vuetify/locale';
 
 interface State {
         detections: Detection[];
@@ -63,8 +61,6 @@ export const use_detections_store = defineStore('detections', {
         
         }
 })
-
-
 
 type FnDetectionById = {
         (id: string): Detection | null;

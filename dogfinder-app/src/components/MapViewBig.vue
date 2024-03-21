@@ -12,9 +12,7 @@ import { ref } from "vue";
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
 
-
 const zoom = ref(13);
-
 
 // export default {
 //   components: {

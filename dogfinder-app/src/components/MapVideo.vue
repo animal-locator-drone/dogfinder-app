@@ -6,7 +6,6 @@
                 <MapViewBig />
         </div>
 
-
         <Dialog 
                 class="pipdialog"
                 v-model:visible="visible"
@@ -26,7 +25,6 @@
                 <div v-else class="mini-view-video">
                         <VideoStreamMini />
                 </div>
-
 
                 <div class="flex justify-between items-center switch-screens">
                         <Button @click="switch_map_video" icon="pi pi-arrow-up-left" severity="secondary" outlined />

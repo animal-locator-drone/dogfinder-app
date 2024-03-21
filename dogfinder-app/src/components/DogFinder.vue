@@ -1,22 +1,21 @@
 <template>
-        <div v-if="!get_loading" class="flex align-items-center justify-content-center dogcard">
-                        <div class="card">
-                                <div class="flex flex-column md:flex-row">
-                                        <div class="w-full md:w-5">
-                                                <DogGallery :detection="detections_store.get_detection_by_id(get_selected_detection)" />
-                                        </div>
-                                        <div class="w-full md:w-2">
-                                                <Divider layout="vertical" class="hidden md:flex">
-                                                        <b>Is this your dog?</b>
-                                                </Divider>
+        <div v-if="!get_loading" class="flex align-items-center justify-content-center">
+                        <div v-if="get_selected_detection" class="dogcard">
+                                <div class="w-full md:w-5">
+                                        <DogGallery
+                                                :detection="detections_store.get_detection_by_id(get_selected_detection)" />
+                                </div>
+                                <div class="w-full md:w-2">
+                                        <Divider layout="horizontal" class="hidden md:flex">
+                                                <b>Is this your dog?</b>
+                                        </Divider>
 
-                                        </div>
-                                        <div class="w-full md:w-5 flex align-items-center justify-content-center py-5">
-                                                <Button label="Yes" icon="pi pi-check" severity="success"
-                                                        class="w-10rem mx-auto"></Button>
-                                                <Button label="No" icon="pi pi-times" severity="danger"
-                                                        class="w-10rem mx-auto"></Button>
-                                        </div>
+                                </div>
+                                <div class="w-full md:w-5 flex align-items-center justify-content-center py-5">
+                                        <Button label="Yes" icon="pi pi-check" severity="success"
+                                                class="w-10rem mx-auto"></Button>
+                                        <Button label="No" icon="pi pi-times" severity="danger"
+                                                class="w-10rem mx-auto"></Button>
                                 </div>
                         </div>
                 <div class="doggrid">
@@ -44,19 +43,11 @@ import DogGallery from '@/components/DogGallery.vue';
 
 const detections_store = use_detections_store();
 
-const { 
+const {
         get_detections,
         get_selected_detection,
-        get_detection_by_id,
         get_loading
 } = storeToRefs(detections_store);
-
-
-
-console.log('detections:', get_detections);
-
-
-
 
 </script>
 
@@ -68,14 +59,7 @@ console.log('detections:', get_detections);
         grid-auto-rows: 1fr;
         gap: 0px 0px;
         grid-auto-flow: row;
-        justify-content: right;
-        align-content: space-around;
-        justify-items: center;
-        align-items: stretch;
-        grid-template-areas:
-                "dogcard doggrid";
-        width: 100%;
-        height: 100%;
+        grid-template-areas: "dogcard doggrid";
 
 }
 
