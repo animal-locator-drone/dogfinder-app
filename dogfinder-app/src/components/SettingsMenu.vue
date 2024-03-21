@@ -12,11 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import DarkModeSwitch from '@/components/DarkModeSwitch.vue'
 import LanguageSelector from '@/components/LanguageSelector.vue'
-
-const visible = ref(true)
 
 </script>
 

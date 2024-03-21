@@ -1,24 +1,31 @@
 <template>
-        <div class="mapvideo-dogfinder-grid">
-                <!-- MapVideo Component -->
-                <div class="map-video">
-                        <MapVideo />
-                </div>
-                <!-- DogFinder Component -->
-                <div class="dog-finder">
-                        <DogFinder />
-                </div>
+        <Splitter style="height: 100rem; width: 100%;" layout="vertical">
+                <SplitterPanel class="" :size="25" :minSize="10">
+                        <!-- MapVideo Component -->
+                        <div class="map-video">
+                                <MapVideo />
+                        </div>
+                </SplitterPanel>
+                <SplitterPanel class="flex align-items-center" :size="75">
+                        <!-- DogFinder Component -->
+                        <div class="dog-finder">
+                                <DogFinder />
+                        </div>
+                </SplitterPanel>
+        </Splitter>
+        <!-- <div class="mapvideo-dogfinder-grid"> -->
 
-                <!-- AbortMission Component -->
-                <div class="abort-button">
-                        <AbortMission />
-                </div>
+
+
+        <!-- AbortMission Component -->
+        <div class="abort-button">
+                <AbortMission />
         </div>
+        <!-- </div> -->
 
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import AbortMission from '@/components/AbortMission.vue'
 import MapVideo from '@/components/MapVideo.vue'
 import DogFinder from '@/components/DogFinder.vue'
@@ -33,32 +40,17 @@ import DogFinder from '@/components/DogFinder.vue'
         z-index: 9999;
 }
 
-.mapvideo-dogfinder-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 2fr 0.5fr;
-        grid-auto-rows: 1fr;
-        gap: 0px 0px;
-        grid-gap: 0px 0px;
-        grid-auto-flow: row;
-        justify-content: center;
-        align-content: space-around;
-        justify-items: center;
-        align-items: stretch;
-        grid-template-areas:
-                "map-video"
-                "dog-finder";
-}
+
 
 .dog-finder {
-        grid-area: dog-finder;
-        /* justify-self: center;
-        align-self: center; */
+        height: 100%;
+        width: 100%;
 }
 
 .map-video {
-        grid-area: map-video;
-        justify-self: center;
-        align-self: center;
+        /* grid-area: map-video; */
+        height: 100%;
+        /* justify-self: center; */
+        /* align-self: center; */
 }
 </style>

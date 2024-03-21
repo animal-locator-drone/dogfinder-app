@@ -3,7 +3,6 @@ import { createPinia } from 'pinia'
 import PrimeView from 'primevue/config'
 import ConfirmationService from 'primevue/confirmationservice'
 
-
 import App from './App.vue'
 import router from './router'
 
@@ -23,6 +22,10 @@ import Panel from 'primevue/panel';
 import Dialog from 'primevue/dialog';
 import Card from 'primevue/card'
 import VirtualScroller from 'primevue/virtualscroller'
+import Galleria from 'primevue/galleria'
+import Divider from 'primevue/divider'
+import Splitter from 'primevue/splitter'
+import SplitterPanel from 'primevue/splitterpanel'
 
 import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
 import 'leaflet/dist/leaflet.css';
@@ -33,8 +36,6 @@ import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 import "primeflex/primeflex.css";
-
-
 
 // Vuetify Components
 import { createVuetify } from 'vuetify'
@@ -74,6 +75,10 @@ app.component('LMap', LMap);
 app.component('LTileLayer', LTileLayer);
 app.component('Card', Card);
 app.component('VirtualScroller', VirtualScroller);
+app.component('Galleria', Galleria);
+app.component('Divider', Divider);
+app.component('Splitter', Splitter);
+app.component('SplitterPanel', SplitterPanel);
 
 app.use(vuetify)
 app.use(PrimeView)

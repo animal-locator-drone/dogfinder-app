@@ -1,5 +1,5 @@
 <template>
-        <video id="video" autoplay controls  width="100%" height="85%">
+        <video id="video" autoplay controls muted  width="100%" height="100%">
                 <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                         type="video/mp4">
                 Your browser does not support the video tag.
