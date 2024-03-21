@@ -1,23 +1,34 @@
 <template>
-        <div class="drone-status-bar">
+        <!-- <div class="drone-status-bar">
                 <DroneStatusBar />
-        </div>
+        </div> -->
         <v-layout>
-                
+
                 <v-navigation-drawer v-model="drawer" class="avoid-status-bar">
                         <SettingsMenu />
                 </v-navigation-drawer>
 
                 <v-app-bar class="avoid-status-bar app-bar flex justify-between">
                         <v-app-bar-nav-icon @click="drawer = !drawer">
-                        <i class="pi pi-bars"></i>
+                                <i class="pi pi-bars"></i>
                         </v-app-bar-nav-icon>
 
                         <v-app-bar-title>Dogfinder App</v-app-bar-title>
+                        
+                                <!-- <v-system-bar class="status-bar"> -->
+                                        <FontAwesomeIcon icon="fas fa-wifi-strong" />
+
+                                        <FontAwesomeIcon icon="fas fa-battery-full" />
+                                        
+                                        <FontAwesomeIcon style="font-size: 1rem;" icon="fas fa-plane" />
+
+                                        <span class="ms-2">3:13PM</span>
+                                <!-- </v-system-bar> -->
+                        <!-- </v-layout> -->
                 </v-app-bar>
 
                 <v-main class="main-app">
-                <RouterView  class="avoid-status-bar" />
+                        <RouterView class="avoid-status-bar" />
                 </v-main>
         </v-layout>
 </template>
@@ -32,27 +43,11 @@ import { use_detections_store } from '@/stores/detections';
 const detections_store = use_detections_store();
 
 detections_store.fetch_detections();
-      
+
 const drawer = ref(false)
 </script>
 
 <style>
 /* html { overflow-y: auto; } */
-.drone-status-bar {
-        position: fixed;
-        top: 0rem;
-        left: 0rem;
-        z-index: 9999;
-        
-}
-.settings-menu {
-        /* position: fixed; */
-        /* padding-top: 10rem; */
-}
-.avoid-status-bar {
-        padding-top: 1.5rem;
-}
-.main-app {
-        padding-top: 3rem;
-}
+
 </style>
