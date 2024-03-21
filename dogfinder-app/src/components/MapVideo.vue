@@ -15,7 +15,7 @@
                         height: '16rem',
                         bottom: '0rem',
                         right: '0rem',
-                        display: 'flex',
+                        position: 'fixed'
                 }"
                 :draggable="true">
 
@@ -79,14 +79,16 @@ const switch_map_video = () => {
 }
 
 .main-view-video {
-        display: grid;
-        height: 35rem;
-        /* height: 50%; */
+        /* display:  */
+        /* height: 35rem; */
+        height: 100%;
+        display: flex;
+        margin: 0%;
 }
 
 .main-view-map {
         display: grid;
-        height: 35rem;
-        width: 50rem;
+        height: 100%;
+        width: 100%;
 }
 </style>
