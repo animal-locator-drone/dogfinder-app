@@ -1,5 +1,5 @@
 <template>
-        <Splitter style="height: 100rem; width: 100%;" layout="vertical">
+        <Splitter style="height: 50rem; width: 100%;" layout="vertical">
                 <SplitterPanel class="" :size="25" :minSize="10">
                         <!-- MapVideo Component -->
                         <div class="map-video">
