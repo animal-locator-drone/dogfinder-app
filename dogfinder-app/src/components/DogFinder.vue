@@ -1,10 +1,11 @@
 <template>
-        <div v-if="!get_loading" class="flex align-items-center justify-content-center">
-                <Splitter style="height: 29rem; width: 100%;">
+        <div v-if="!get_loading" class="">
+                <Splitter style="height: 30rem; width: 100%;">
                         <SplitterPanel class="flex align-items-center " :size="25" :minSize="10">
                                 <DogCard />
                         </SplitterPanel>
-                        <SplitterPanel class="flex" :size="75">
+                        <SplitterPanel class="flex" :size="75" :minSize="10" 
+                                style="overflow: auto; display: flex; flex-direction: column;">
                                 <DogGrid />
                         </SplitterPanel>
                 </Splitter>
