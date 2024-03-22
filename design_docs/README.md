@@ -7,3 +7,9 @@
 3. For small changes you can just update the latest file (they are prepended with a date stamp)
 4. For major changes make a new file with the date prepended as YYYYMMDD
   1. This way we know whats the latest file to work on and also are able to revert to older versions. 
+
+
+
+design_docs/design_document_one.svg
+
+![Alt text](https://github.com/animal-locator-drone/dogfinder-app/blob/main/design_docs/design_document_one.svg)
