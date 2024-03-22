@@ -1,34 +1,12 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, Express } from 'express';
 import ViteExpress from 'vite-express';
 import { Server } from 'socket.io';
 
-import { createServer } from 'http';
+import http from 'http';
 
 ViteExpress.config({ mode: 'development' });
 
-const app = express();
-const PORT = 3000;
-
-const httpServer = createServer(app);
-
-// initialize socket.io
-
-const io = new Server(httpServer, {
-        cors: {
-                origin: "http://localhost:3000",
-                methods: ["GET", "POST"]
-        }
-});
-
-io.attach(3001);
-
-// handle socket.io connections
-io.on('connection', (socket) => {
-        console.log('a user connected');
-        socket.on('disconnect', () => {
-                console.log('user disconnected');
-        });
-});
+const app: Express = express();
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -107,6 +85,40 @@ app.post('/new_detection', (req: Request, res: Response) => {
         io.emit('new_detection', req.body);
 });
 
-ViteExpress.listen(app, PORT, () => {
+// ViteExpress.listen(app, PORT, () => {
+//         console.log(`Server is running at http://localhost:${PORT}`);
+// });
+
+const PORT = 3000;
+
+const server = http.createServer(app).listen(PORT, () => {
         console.log(`Server is running at http://localhost:${PORT}`);
 });
+
+const URL = "http://localhost:3000";
+
+const io = new Server(server, {
+        cors: {
+                origin: URL,
+        }
+});
+
+
+// Set up event listeners
+io.on('connection', (socket) => {
+        console.log('A user connected');
+
+        // Handle chat messages
+        socket.on('create-something', (data) => {
+                console.log('Received:', data);
+                io.emit('something-created', data);
+        });
+
+        // Handle disconnection
+        socket.on('disconnect', () => {
+                console.log('A user disconnected');
+        });
+});
+
+
+ViteExpress.bind(app, server);
