@@ -1,22 +1,15 @@
 <template>
-        <VirtualScroller :items="get_detections" :itemSize="30" orientation="horizontal"
-                class="border-1 surface-border border-round" style="width: 100%; height: 100%;"
-                :pt="{ content: 'flex flex-row' }">
-                <template v-slot:item="{ item, options }">
-                        <div :class="['align-items-center p-2', { 'surface-hover': options.odd }]"
-                                style="width: 10rem;">
+        <div class="grid-container">
+                <DogGallery v-for="detection in get_detections" :key="detection.id" :detection="detection" />
+        </div>
 
-                                <p class="m-0">{{ item.id }}</p>
 
-                                <DogGallery :detection="item" />
-                        </div>
-                </template>
-        </VirtualScroller>
 </template>
 
 <script setup lang="ts">
 import { use_detections_store } from '@/stores/detections';
 import { storeToRefs } from 'pinia';
+import { ref, computed } from 'vue';
 import DogGallery from '@/components/DogGallery.vue';
 
 const detections_store = use_detections_store();
@@ -27,11 +20,16 @@ const {
         get_loading
 } = storeToRefs(detections_store);
 
+
 </script>
 
 <style scoped>
-.dogcard {
-        height: 100%;
-        width: auto;
+.grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+        gap: 1px;
+        overflow-y: auto;
+        max-height: 100%;
+        /* Adjust based on your layout */
 }
 </style>
