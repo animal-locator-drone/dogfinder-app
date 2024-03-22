@@ -66,9 +66,10 @@ app.get('/detections', (req: Request, res: Response) => {
                         location: [123, 123],
                         time: "timeUTC",
                         images: [
-                                "https://www.w3schools.com/w3images/lights.jpg",
-                                "https://www.w3schools.com/w3images/nature.jpg",
-                                "https://www.w3schools.com/w3images/mountains.jpg",
+                                "https://www.akc.org/wp-content/uploads/2017/11/Affenpinscher-running-outdoors.jpg",
+                                "https://www.akc.org/wp-content/uploads/2017/11/Affenpinschers-together-in-the-grass.jpg",
+                                "https://www.akc.org/wp-content/uploads/2017/11/Affenpinscher-at-the-2016-ANC.jpg",
+                                "https://www.akc.org/wp-content/uploads/2017/11/Affenpinscher-head-portrait-1.jpg"
                         ],
                 },
         ];
