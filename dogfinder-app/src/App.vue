@@ -4,11 +4,11 @@
         </div> -->
         <v-layout>
 
-                <v-navigation-drawer v-model="drawer" class="avoid-status-bar">
+                <v-navigation-drawer v-model="drawer">
                         <SettingsMenu />
                 </v-navigation-drawer>
 
-                <v-app-bar class="avoid-status-bar app-bar flex justify-between">
+                <v-app-bar class="app-bar flex justify-between">
                         <v-app-bar-nav-icon @click="drawer = !drawer">
                                 <i class="pi pi-bars"></i>
                         </v-app-bar-nav-icon>
@@ -28,7 +28,7 @@
                 </v-app-bar>
 
                 <v-main class="main-app">
-                        <RouterView class="avoid-status-bar" />
+                        <RouterView />
                 </v-main>
         </v-layout>
 </template>
@@ -39,10 +39,13 @@ import { RouterView } from 'vue-router'
 import SettingsMenu from './components/SettingsMenu.vue';
 import DroneStatusBar from '@/components/DroneStatusBar.vue';
 import { use_detections_store } from '@/stores/detections';
+import { socket } from "@/socket";
 
 const detections_store = use_detections_store();
 
 detections_store.fetch_detections();
+
+socket.connect();
 
 const drawer = ref(false)
 </script>
