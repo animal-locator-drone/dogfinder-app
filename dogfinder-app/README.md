@@ -30,7 +30,7 @@ yarn
 ### Compile and Hot-Reload for Development
 
 ```sh
-yarn dev
+yarn start
 ```
 
 ### Type-Check, Compile and Minify for Production
