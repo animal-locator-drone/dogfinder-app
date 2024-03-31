@@ -20,8 +20,7 @@ const languages = [
         { name: 'Spanish', value: 'es' },
         { name: 'French', value: 'fr' },
         { name: 'German', value: 'de' },
-        { name: 'Mandarin', value: 'Zh' },
-        { name: 'Pig Latin', value: 'pg' }
+        { name: 'Mandarin', value: 'zh' }
 
 ]
 
