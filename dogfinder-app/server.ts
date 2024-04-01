@@ -8,6 +8,9 @@ ViteExpress.config({ mode: 'development' });
 
 const app: Express = express();
 
+// Serve images from the public directory
+app.use(express.static('/home/ziadarafat/src/detection-service/output_imagesmission'));
+
 // Middleware to parse JSON bodies
 app.use(express.json());
 
@@ -92,8 +95,10 @@ app.post('/new_detection', (req: Request, res: Response) => {
 
 const PORT = 3000;
 
-const server = http.createServer(app).listen(PORT, () => {
-        console.log(`Server is running at http://localhost:${PORT}`);
+const HOST = '0.0.0.0'
+
+const server = http.createServer(app).listen(PORT, HOST, () => {
+        console.log(`Server is running at http://${HOST}:${PORT}`);
 });
 
 const URL = "http://localhost:3000";
