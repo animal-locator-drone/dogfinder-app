@@ -13,10 +13,12 @@ import { useConfirm } from "primevue/useconfirm"
 
 const confirm = useConfirm()
 
+
 const confirm_abort = () => {
+        
         confirm.require({
-                message: 'Are you sure you want to abort the mission?',
-                header: 'Abort Mission',
+                message: 'Are you sure you want to abort the mission? You will start over from the very beginning.',
+                header: 'Abort Mission?',
                 icon: 'pi pi-exclamation-triangle',
                 accept: () => {
                         console.log('Mission Aborted')

@@ -8,8 +8,11 @@
                 />
 </template>
 
+
+
 <script setup lang="ts">
 import { ref } from 'vue'
+
 const selected_language = ref()
 
 const languages = [
@@ -17,6 +20,9 @@ const languages = [
         { name: 'Spanish', value: 'es' },
         { name: 'French', value: 'fr' },
         { name: 'German', value: 'de' },
+        { name: 'Mandarin', value: 'zh' }
+
 ]
 
 </script>
+
