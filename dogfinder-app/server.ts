@@ -1,16 +1,17 @@
 import express, { Request, Response, Express } from 'express';
 import ViteExpress from 'vite-express';
 import { Server } from 'socket.io';
-
 import { v4 } from 'uuid';
-
-
 import csv from 'csv-parser';
-
 import fs from 'fs';
-
 import http from 'http';
 import uuid from 'uuid';
+import multer from 'multer';
+
+// Create necessary directories
+fs.mkdirSync('./data', { recursive: true });
+fs.mkdirSync('./output_images', { recursive: true });
+
 
 // Initialize a new CSV for this session with a unique id 
 const csvName: string = v4();
@@ -21,11 +22,24 @@ ViteExpress.config({ mode: 'development' });
 
 const app: Express = express();
 
-// Serve images from the public directory
-// app.use(express.static('/home/ziadarafat/src/detection-service/output_images'));
+// Multer setup
+const storage: multer.StorageEngine = multer.diskStorage({
+        destination: (req, file, cb) => {
+                cb(null, './output_images/');
+        },
+        filename: (req, file, cb) => {
+                cb(null, file.originalname);
+        }
+});
+
+const upload = multer({ storage: storage });
+
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
 
 // Routes
 interface Mission {
@@ -111,6 +125,10 @@ app.post('/new_detection', (req: Request, res: Response) => {
         csvStream.write(
                 `${req.body.id},${req.body.location},${req.body.time},${req.body.images.join(' ')}\n`
         );
+});
+
+app.post('/upload_image', upload.single('image'), (req: Request, res: Response) => {
+        res.json({ status: "success" });
 });
 
 // ViteExpress.listen(app, PORT, () => {
