@@ -31,3 +31,6 @@ coverage
 
 # Ignore data directory
 data/
+
+# ignore output_images directory
+output_images/
