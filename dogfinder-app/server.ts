@@ -2,14 +2,27 @@ import express, { Request, Response, Express } from 'express';
 import ViteExpress from 'vite-express';
 import { Server } from 'socket.io';
 
+import { v4 } from 'uuid';
+
+
+import csv from 'csv-parser';
+
+import fs from 'fs';
+
 import http from 'http';
+import uuid from 'uuid';
+
+// Initialize a new CSV for this session with a unique id 
+const csvName: string = v4();
+const csvStream = fs.createWriteStream(`./data/${csvName}.csv`);
+csvStream.write('id,lat,lon,time,images\n');
 
 ViteExpress.config({ mode: 'development' });
 
 const app: Express = express();
 
 // Serve images from the public directory
-app.use(express.static('/home/ziadarafat/src/detection-service/output_imagesmission'));
+// app.use(express.static('/home/ziadarafat/src/detection-service/output_images'));
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -20,6 +33,10 @@ interface Mission {
         name: string;
         path_preview: string;
 }
+
+app.get('/output_images/:image', (req: Request, res: Response) => {
+        res.sendFile(`/home/doge/Documents/src/detection-service/output_images/${req.params.image}`);
+});
 
 app.get('/missions_available', (req: Request, res: Response) => {
         const missions: Mission[] = [
@@ -63,20 +80,22 @@ interface Detection {
 
 app.get('/detections', (req: Request, res: Response) => {
 
-        const detections: Detection[] = [
-                {
-                        id: "1234",
-                        location: [123, 123],
-                        time: "timeUTC",
-                        images: [
-                                "https://www.akc.org/wp-content/uploads/2017/11/Affenpinscher-running-outdoors.jpg",
-                                "https://www.akc.org/wp-content/uploads/2017/11/Affenpinschers-together-in-the-grass.jpg",
-                                "https://www.akc.org/wp-content/uploads/2017/11/Affenpinscher-at-the-2016-ANC.jpg",
-                                "https://www.akc.org/wp-content/uploads/2017/11/Affenpinscher-head-portrait-1.jpg"
-                        ],
-                },
-        ];
-        res.json({ detections });
+        const detections: Detection[] = [];
+
+        fs.createReadStream(`./data/${csvName}.csv`)
+                .pipe(csv())
+                .on('data', (row) => {
+                        detections.push({
+                                id: row.id,
+                                location: [parseFloat(row.lat), parseFloat(row.lon)],
+                                time: row.time,
+                                images: row.images.split(' ')
+                        });
+                })
+                .on('end', () => {
+                        console.log('CSV file successfully processed');
+                        res.json({ detections });
+                });
 });
 
 app.post('/abort_mission', (req: Request, res: Response) => {
@@ -87,6 +106,11 @@ app.post('/new_detection', (req: Request, res: Response) => {
         res.json({ status: "success" });
         console.log(req.body);
         io.emit('new_detection', req.body);
+
+        // Write to CSV
+        csvStream.write(
+                `${req.body.id},${req.body.location},${req.body.time},${req.body.images.join(' ')}\n`
+        );
 });
 
 // ViteExpress.listen(app, PORT, () => {
@@ -101,13 +125,14 @@ const server = http.createServer(app).listen(PORT, HOST, () => {
         console.log(`Server is running at http://${HOST}:${PORT}`);
 });
 
-const URL = "http://localhost:3000";
+const URL = HOST + ':' + PORT;
 
 const io = new Server(server, {
         cors: {
                 origin: URL,
         }
 });
+
 
 
 // Set up event listeners
@@ -118,6 +143,10 @@ io.on('connection', (socket) => {
         socket.on('create-something', (data) => {
                 console.log('Received:', data);
                 io.emit('something-created', data);
+
+                // Write to CSV
+                console.log(data);
+                csvStream.write(`${data.id},${data.location.join(' ')},${data.time},${data.images.join(' ')}\n`);
         });
 
         // Handle disconnection
@@ -127,4 +156,9 @@ io.on('connection', (socket) => {
 });
 
 
+
+
+
+
+// Bind Vite to Express
 ViteExpress.bind(app, server);
