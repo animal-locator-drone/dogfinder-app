@@ -8,6 +8,7 @@ import http from 'http';
 import uuid from 'uuid';
 import multer from 'multer';
 
+
 // Create necessary directories
 fs.mkdirSync('./data', { recursive: true });
 fs.mkdirSync('./output_images', { recursive: true });
@@ -112,8 +113,29 @@ app.get('/detections', (req: Request, res: Response) => {
                 });
 });
 
+
 app.post('/abort_mission', (req: Request, res: Response) => {
-        res.json({ status: "success" });
+        // Make HTTP POST request to captain server
+        const options = {
+            hostname: '127.0.0.1', // Assuming captain server is running locally
+            port: 8000, // Change port according to your captain server configuration
+            path: '/abort_mission',
+            method: 'POST',
+        };
+    
+        const captainReq = http.request(options, (captainRes) => {
+            captainRes.on('data', (data) => {
+                console.log(data.toString());
+                res.json({ status: 'success' }); // Respond to client
+            });
+        });
+    
+        captainReq.on('error', (error) => {
+            console.error(error);
+            res.status(500).json({ error: 'Failed to abort mission' }); // Handle error
+        });
+    
+        captainReq.end();
 });
 
 app.post('/new_detection', (req: Request, res: Response) => {
