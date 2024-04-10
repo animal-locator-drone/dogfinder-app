@@ -26,6 +26,7 @@ import Galleria from 'primevue/galleria'
 import Divider from 'primevue/divider'
 import Splitter from 'primevue/splitter'
 import SplitterPanel from 'primevue/splitterpanel'
+import { usePrimeVue } from 'primevue/config';
 
 // FontAwesome components
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -51,9 +52,14 @@ import 'leaflet/dist/leaflet.js';
 
 // PrimeVue CSS
 import 'primevue/resources/themes/saga-blue/theme.css';
+import 'primevue/resources/themes/md-dark-indigo/theme.css'
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 import "primeflex/primeflex.css";
+
+
+
+//primevue.changeTheme(currentTheme: string, newTheme: string, linkElementId: string, callback: Function)
 
 // Vuetify Components
 import { createVuetify } from 'vuetify'
