@@ -28,13 +28,26 @@ import { ref } from 'vue'
 
 
 
-var dark_mode = ref(false)
+var dark_mode = ref(true)
 
 function changeTheme(   ) {
-        alert("hello :D")
 
-        //causes button to not move anymore 
-        //dark_mode.value = !dark_mode
+        //Checks to see if dark_mode is true
+        //if it is change the value
+        if (dark_mode.value == true ) {
+                alert( dark_mode.value )
+
+
+                //insert code here to change the theme
+        }// end if 
+
+        //Checks to see if dark_mode is false
+        else if( dark_mode.value == false ) {
+                alert( dark_mode.value )
+                //insert code to change the theme here lol 
+                
+        }// end if 
+
 } 
 
 
