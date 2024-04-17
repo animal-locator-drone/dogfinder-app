@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import PrimeView from 'primevue/config'
+import PrimeVue from 'primevue/config';
+import PrimeView from 'primevue/config'; 
 import ConfirmationService from 'primevue/confirmationservice'
 
 import App from './App.vue'
@@ -26,11 +27,13 @@ import Galleria from 'primevue/galleria'
 import Divider from 'primevue/divider'
 import Splitter from 'primevue/splitter'
 import SplitterPanel from 'primevue/splitterpanel'
-import { usePrimeVue } from 'primevue/config';
+
+
 
 // FontAwesome components
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 
 import { 
         faBatteryFull,
@@ -59,7 +62,6 @@ import "primeflex/primeflex.css";
 
 
 
-//primevue.changeTheme(currentTheme: string, newTheme: string, linkElementId: string, callback: Function)
 
 // Vuetify Components
 import { createVuetify } from 'vuetify'
@@ -68,6 +70,7 @@ import * as directives from 'vuetify/directives'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
 
 const app = createApp(App)
+
 
 const vuetify = createVuetify({
         components,
@@ -126,5 +129,7 @@ app.use(PrimeView)
 app.use(ConfirmationService)
 app.use(createPinia())
 app.use(router)
+
+
 
 app.mount('#app')
