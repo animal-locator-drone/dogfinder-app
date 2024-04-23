@@ -12,7 +12,7 @@ export interface Mission {
         path_preview: string;
 }
 
-export const use_detections_store = defineStore('detections', {
+export const use_missions_store = defineStore('missions', {
         state: (): State => {
                 return {
                         missions: [],
