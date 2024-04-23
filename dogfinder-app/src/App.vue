@@ -1,36 +1,22 @@
 <template>
-        <!-- <div class="drone-status-bar">
-                <DroneStatusBar />
-        </div> -->
-        <v-layout>
-
-                <v-navigation-drawer v-model="drawer">
-                        <SettingsMenu />
-                </v-navigation-drawer>
-
-                <v-app-bar class="app-bar flex justify-between">
-                        <v-app-bar-nav-icon @click="drawer = !drawer">
-                                <i class="pi pi-bars"></i>
-                        </v-app-bar-nav-icon>
-
-                        <v-app-bar-title>Dogfinder App</v-app-bar-title>
-                        
-                                <!-- <v-system-bar class="status-bar"> -->
-                                        <FontAwesomeIcon icon="fas fa-wifi-strong" />
-
-                                        <FontAwesomeIcon icon="fas fa-battery-full" />
-                                        
-                                        <FontAwesomeIcon style="font-size: 1rem;" icon="fas fa-plane" />
-
-                                        <span class="ms-2">3:13PM</span>
-                                <!-- </v-system-bar> -->
-                        <!-- </v-layout> -->
-                </v-app-bar>
-
-                <v-main class="main-app">
+        <div class="block">
+                <div class="col">
+                        <NavbarMenu v-model:drawer="drawer" />
+                </div>
+        </div>
+        <div class="block">
+                <div class="col">
                         <RouterView />
-                </v-main>
-        </v-layout>
+                </div>
+        </div>
+        <div class="card flex justify-content-center">
+                <Sidebar v-model:visible="drawer" header="Sidebar">
+                        <SettingsMenu />
+                </Sidebar>
+        </div>
+
+
+        
 </template>
 
 <script setup lang="ts">
@@ -41,6 +27,7 @@ import DroneStatusBar from '@/components/DroneStatusBar.vue';
 import { use_detections_store } from '@/stores/detections';
 import { socket } from "@/socket";
 import { use_missions_store } from '@/stores/missions';
+import NavbarMenu from './components/NavbarMenu.vue';
 
 const missions_store = use_missions_store()
 
@@ -58,5 +45,4 @@ const drawer = ref(false)
 
 <style>
 /* html { overflow-y: auto; } */
-
 </style>
