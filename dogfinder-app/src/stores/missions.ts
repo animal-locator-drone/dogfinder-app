@@ -1,9 +1,12 @@
 import { defineStore } from 'pinia'
+import axios from 'axios';
+
 
 interface State {
         missions: Mission[];
         selected_mission_id: string | "";
         loading: boolean;
+        loading_mission_status: boolean;
 
 }
 export interface Mission {
@@ -18,6 +21,7 @@ export const use_missions_store = defineStore('missions', {
                         missions: [],
                         selected_mission_id: "",
                         loading: true,
+                        loading_mission_status: false,
                 }
         },
 
@@ -50,9 +54,20 @@ export const use_missions_store = defineStore('missions', {
                         this.loading = false;
                 },
 
-                select_mission(id: string) {
-                        this.selected_mission_id = id;
+                async select_mission(id: string) {
+                        this.loading_mission_status = true;
+                        const mission_status = await axios.post(
+                                '/select_mission',
+                                { id }
+                        );
+                        if (mission_status.data.status === "Mission Started") {
+                                this.loading_mission_status = false;
+                        } else {
+                                console.error("Mission not started");
+                                throw new Error("Mission not started");
+                        }
                 },
+
 
                 new_mission(mission: Mission) {
                         this.missions.push(mission);
