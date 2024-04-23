@@ -51,11 +51,11 @@ export const use_detections_store = defineStore('detections', {
                         this.loading = false;
                 },
 
-                async select_detection(id: string) {
+                select_detection(id: string) {
                         this.selected_detection = id;
                 },
 
-                async new_detection(detection: Detection) {
+                new_detection(detection: Detection) {
                         this.detections.push(detection);
                 }
         
