@@ -40,8 +40,14 @@ import SettingsMenu from './components/SettingsMenu.vue';
 import DroneStatusBar from '@/components/DroneStatusBar.vue';
 import { use_detections_store } from '@/stores/detections';
 import { socket } from "@/socket";
+import { use_missions_store } from '@/stores/missions';
 
+const missions_store = use_missions_store()
+
+missions_store.fetch_missions()
 const detections_store = use_detections_store();
+
+console.log('detections_store:', detections_store);
 
 detections_store.fetch_detections();
 
