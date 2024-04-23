@@ -7,7 +7,7 @@ import fs from 'fs';
 import http from 'http';
 import uuid from 'uuid';
 import multer from 'multer';
-
+import axios, { AxiosResponse } from 'axios';
 
 // Create necessary directories
 fs.mkdirSync('./data', { recursive: true });
@@ -53,12 +53,11 @@ app.get('/output_images/:image', (req: Request, res: Response) => {
         res.sendFile(`/home/doge/Documents/src/detection-service/output_images/${req.params.image}`);
 });
 
-app.get('/missions_available', (req: Request, res: Response) => {
-        const missions: Mission[] = [
-                { id: "123", name: "Path A", path_preview: "TODO" },
-                { id: "456", name: "Path B", path_preview: "TODO" },
-                { id: "789", name: "Path C", path_preview: "TODO" }
-        ];
+app.get('/missions_available', async (req: Request, res: Response) => {
+        const missions_response: AxiosResponse<any, any> = await axios.get(
+                'http://localhost:8000/missions_available'
+        );
+        const missions: Mission[] = missions_response.data;
         res.json({ missions });
 });
 
@@ -117,24 +116,24 @@ app.get('/detections', (req: Request, res: Response) => {
 app.post('/abort_mission', (req: Request, res: Response) => {
         // Make HTTP POST request to captain server
         const options = {
-            hostname: '127.0.0.1', // Assuming captain server is running locally
-            port: 8000, // Change port according to your captain server configuration
-            path: '/abort_mission',
-            method: 'POST',
+                hostname: '127.0.0.1', // Assuming captain server is running locally
+                port: 8000, // Change port according to your captain server configuration
+                path: '/abort_mission',
+                method: 'POST',
         };
-    
+
         const captainReq = http.request(options, (captainRes) => {
-            captainRes.on('data', (data) => {
-                console.log(data.toString());
-                res.json({ status: 'success' }); // Respond to client
-            });
+                captainRes.on('data', (data) => {
+                        console.log(data.toString());
+                        res.json({ status: 'success' }); // Respond to client
+                });
         });
-    
+
         captainReq.on('error', (error) => {
-            console.error(error);
-            res.status(500).json({ error: 'Failed to abort mission' }); // Handle error
+                console.error(error);
+                res.status(500).json({ error: 'Failed to abort mission' }); // Handle error
         });
-    
+
         captainReq.end();
 });
 
