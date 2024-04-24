@@ -50,7 +50,7 @@ interface Mission {
 }
 
 app.get('/output_images/:image', (req: Request, res: Response) => {
-        res.sendFile(`/home/doge/Documents/src/detection-service/output_images/${req.params.image}`);
+        res.sendFile(`/home/animallocator/Documents/src/detection-service/output_images/${req.params.image}`);
 });
 
 app.get('/missions_available', async (req: Request, res: Response) => {
