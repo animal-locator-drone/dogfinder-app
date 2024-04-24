@@ -2,7 +2,7 @@
         <div v-if="map_view" class="main-view-video">
                 <VideoStreamBig />
         </div>
-        <div v-else class="main-view-map">
+        <div v-else>
                 <MapViewBig />
         </div>
 
@@ -51,7 +51,7 @@ const switch_map_video = () => {
 }
 
 </script>
-
+<!-- 
 <style scoped>
 .switch-screens {
         position: fixed;
@@ -91,4 +91,4 @@ const switch_map_video = () => {
         height: 100%;
         width: 100%;
 }
-</style>
+</style> -->
