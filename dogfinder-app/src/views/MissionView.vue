@@ -1,16 +1,17 @@
 <template>
-        <Splitter style="height: 50rem; width: 100%;" layout="vertical">
-                <SplitterPanel class="" :size="25" :minSize="10">
-                        <!-- MapVideo Component -->
-                        <div class="map-video">
-                                <MapVideo />
-                        </div>
+        <Splitter layout="vertical" style="height: 80vh;">
+                <SplitterPanel
+
+                        class="flex flex-row flex-wrap" :size="25" :minSize="10">
+                        <div class="h-full">
+                        <MapVideo />
+                </div>
                 </SplitterPanel>
-                <SplitterPanel class="flex align-items-center" :size="75">
+                <SplitterPanel
+                        :size="75"
+                >
                         <!-- DogFinder Component -->
-                        <div class="dog-finder">
-                                <DogFinder />
-                        </div>
+                        <DogFinder />
                 </SplitterPanel>
         </Splitter>
         <!-- <div class="mapvideo-dogfinder-grid"> -->
@@ -32,25 +33,3 @@ import DogFinder from '@/components/DogFinder.vue'
 
 </script>
 
-<style scoped>
-.abort-button {
-        position: fixed;
-        bottom: 0rem;
-        right: 0rem;
-        z-index: 9999;
-}
-
-
-
-.dog-finder {
-        height: 100%;
-        width: 100%;
-}
-
-.map-video {
-        /* grid-area: map-video; */
-        height: 100%;
-        /* justify-self: center; */
-        /* align-self: center; */
-}
-</style>
