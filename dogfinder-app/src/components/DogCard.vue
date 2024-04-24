@@ -1,32 +1,34 @@
 <template>
-        <div v-if="get_selected_detection" class="dogcard">
-                <div class="w-full md:w-8">
-                        <DogGallery :detection="detections_store.get_detection_by_id(get_selected_detection)" />
-                </div>
-                <div class="w-full md:w-8">
-                        <Divider layout="horizontal" class="md-flex" style="height: 2px;">
-                                <b>Is this your dog?</b>
-                        </Divider>
+        <div class="w-full h-auto m-0 p-1">
 
-                </div>
-                <div class="w-full md:w-8">
-                        <Button label="Yes" icon="pi pi-check" severity="success" class="w-19rem mx-auto"></Button>
-                        <Button label="No" icon="pi pi-times" severity="danger" class="w-19rem mx-auto"></Button>
-                </div>
+                <Image 
+                        v-if="get_selected_detection"
+                        :src="get_selected_detection.images[0]"
+                        :preview="true"
+                        height="100%"
+                        width="100%" 
+                />
+
+                <h3 v-else>Please Select One</h3>
         </div>
-        <div v-else class="dogcard">
-                <div class="w-full md:w-8">
-                        <DogGallery :detection="detections_store.get_detection_by_id(get_selected_detection)" />
+        <div class="w-full grid p-2">
+                <div class="col p-1 m-2">
+                        <Button 
+                                :disabled="!get_selected_detection"
+                                label="Yes" 
+                                icon="pi pi-check"
+                                severity="success"
+                                class="w-full"
+                        />
                 </div>
-                <div class="w-full md:w-8">
-                        <Divider layout="horizontal" class="md-flex" style="height: 2px;">
-                                <b>please select a dog</b>
-                        </Divider>
-
-                </div>
-                <div class="w-full md:w-8">
-                        <Button label="" icon="" severity="warning" class="w-19rem mx-auto"></Button>
-                        <Button label="" icon="" severity="warning" class="w-19rem mx-auto"></Button>
+                <div class="col p-1 m-2">
+                        <Button 
+                                :disabled="!get_selected_detection"
+                                label="No"
+                                icon="pi pi-times"
+                                severity="danger"
+                                class="w-full"
+                        />
                 </div>
         </div>
 </template>
@@ -34,7 +36,6 @@
 <script setup lang="ts">
 import { use_detections_store } from '@/stores/detections';
 import { storeToRefs } from 'pinia';
-import DogGallery from '@/components/DogGallery.vue';
 
 const detections_store = use_detections_store();
 
@@ -45,10 +46,3 @@ const {
 } = storeToRefs(detections_store);
 
 </script>
-
-<style scoped>
-.dogcard {
-        height: 100%;
-        width: auto;
-}
-</style>
