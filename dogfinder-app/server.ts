@@ -65,8 +65,17 @@ app.get('/missions_available', async (req: Request, res: Response) => {
         });
 });
 
-app.post('/select_mission', (req: Request, res: Response) => {
-        res.json({ status: "Mission Started" });
+app.post('/select_mission/:mission_id', (req: Request, res: Response) => {
+
+        axios.post(
+                'http://localhost:8000/select_mission/' + req.params.mission_id
+        ).then((response) => {
+                res.status(200).json({ status: 'Mission Started' });
+                return response;
+        }).catch((error) => {
+                console.error(error);
+                res.status(500).json({ error: 'Failed to fetch missions' });
+        });
 });
 
 interface StatusInfo {

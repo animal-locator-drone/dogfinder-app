@@ -56,16 +56,19 @@ export const use_missions_store = defineStore('missions', {
 
                 async select_mission(id: string) {
                         this.loading_mission_status = true;
-                        const mission_status = await axios.post(
-                                '/select_mission',
-                                { id }
-                        );
-                        if (mission_status.data.status === "Mission Started") {
+                        axios.post(
+                                '/select_mission/' + id
+                        ).then((response) => {
+                                this.selected_mission_id = id;
                                 this.loading_mission_status = false;
-                        } else {
-                                console.error("Mission not started");
-                                throw new Error("Mission not started");
-                        }
+                                return response;
+                        }).catch((error) => {
+                                console.error(error);
+                                this.loading_mission_status = false;
+                                throw new Error('Failed to select mission');
+                        });
+                        
+                        
                 },
 
 
