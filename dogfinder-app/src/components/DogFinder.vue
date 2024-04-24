@@ -1,6 +1,6 @@
 <template>
 <Splitter layout="horizontal" class="h-full w-full">
-        <SplitterPanel :size="25" :minSize="10">
+        <SplitterPanel>
                 <div class="flex flex-column w-full h-full justify-center items-center">
                         <DogCard />
                 </div>

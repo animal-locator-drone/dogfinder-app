@@ -1,18 +1,17 @@
 <template>
-        <div class="flex align-items-center w-full justify-content-center h-20rem bg-primary font-bold border-round m-2">
+        <div class="flex align-items-center w-full justify-content-center h-full bg-primary font-bold border-round">
 
                 <Image 
+                        :image-class="'border-3 border-primary p-1 shadow-8 w-full'"
                         v-if="get_selected_detection"
                         :src="get_selected_detection.images[0]"
                         :preview="true"
-                        height="100%"
-                        width="100%" 
                 />
 
                 <h3 v-else>Please Select One</h3>
         </div>
-        <div class="flex flex-row align-items-center w-full justify-content-center h-5rem bg-primary font-bold border-round m-2">
-                <div class="flex w-full">
+        <div class="flex flex-row align-items-center w-full justify-content-center h-5rem bg-primary font-bold border-round">
+                <div class="flex w-full p-1">
                         <Button 
                                 :disabled="!get_selected_detection"
                                 label="Yes" 
@@ -22,7 +21,7 @@
                                 rounded
                         />
                 </div>
-                <div class="flex w-full">
+                <div class="flex w-full p-1">
                         <Button 
                                 :disabled="!get_selected_detection"
                                 label="No"
