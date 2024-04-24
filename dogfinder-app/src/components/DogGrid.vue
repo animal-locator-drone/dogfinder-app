@@ -1,6 +1,22 @@
 <template>
-        <div class="grid-container">
-                <DogGallery v-for="detection in get_detections" :key="detection.id" :detection="detection" />
+        <div 
+                class="flex flex-row flex-wrap overflow-scroll h-full">
+                <div 
+                        v-if="get_selected_detection"
+                        v-for="detection in get_detections"
+                        class="w-6rem h-6rem m-0 p-1 border-0"
+                >
+
+                        <Image 
+                                :image-class="detection.id === get_selected_detection.id ? 'border-3 border-blue-500 p-1' : 'border-0'"
+                                :key="detection.id"
+                                :src="detection.images[0]"
+                                :preview="false"
+                                height="100%"
+                                width="100%" 
+                                @click="detections_store.select_detection(detection.id)"
+                        />
+                </div>
         </div>
 
 
@@ -10,7 +26,6 @@
 import { use_detections_store } from '@/stores/detections';
 import { storeToRefs } from 'pinia';
 import { ref, computed } from 'vue';
-import DogGallery from '@/components/DogGallery.vue';
 
 const detections_store = use_detections_store();
 
@@ -22,14 +37,3 @@ const {
 
 
 </script>
-
-<style scoped>
-.grid-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
-        gap: 1px;
-        overflow-y: auto;
-        max-height: 100%;
-        /* Adjust based on your layout */
-}
-</style>
