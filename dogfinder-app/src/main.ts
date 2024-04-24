@@ -31,6 +31,7 @@ import Divider from 'primevue/divider'
 import Splitter from 'primevue/splitter'
 import SplitterPanel from 'primevue/splitterpanel'
 import Toolbar from 'primevue/toolbar'
+import Image from 'primevue/image'
 
 // FontAwesome components
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -83,6 +84,7 @@ app.component('Divider', Divider);
 app.component('Splitter', Splitter);
 app.component('SplitterPanel', SplitterPanel);
 app.component('Toolbar', Toolbar);
+app.component('Image', Image);
 
 // FontAwesome components added to the app
 library.add(
@@ -100,12 +102,6 @@ library.add(
 
 app.component('FontAwesomeIcon', FontAwesomeIcon)
 
-
-
-app.use(ConfirmationService)
-app.use(createPinia())
-app.use(router)
-
 app.use(PrimeVue, {
         // Default theme configuration
         theme: {
@@ -118,6 +114,12 @@ app.use(PrimeVue, {
                 }
         }
 });
+
+app.use(ConfirmationService)
+app.use(createPinia())
+app.use(router)
+
+
 
 
 app.mount('#app')
