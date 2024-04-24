@@ -1,11 +1,10 @@
 <template>
-        <div v-if="!get_loading" class="">
-                <Splitter style="height: 30rem; width: 100%;">
-                        <SplitterPanel class="flex align-items-center " :size="25" :minSize="10">
+        <div v-if="!get_loading">
+                <Splitter layout="horizontal" style="height: 100%;"> 
+                        <SplitterPanel :size="25" :minSize="10">
                                 <DogCard />
                         </SplitterPanel>
-                        <SplitterPanel class="flex" :size="75" :minSize="10" 
-                                style="overflow: auto; display: flex; flex-direction: column;">
+                        <SplitterPanel>
                                 <DogGrid />
                         </SplitterPanel>
                 </Splitter>
@@ -17,7 +16,6 @@
 <script setup lang="ts">
 import { use_detections_store } from '@/stores/detections';
 import { storeToRefs } from 'pinia';
-import DogGallery from '@/components/DogGallery.vue';
 import DogCard from '@/components/DogCard.vue';
 import DogGrid from '@/components/DogGrid.vue';
 
