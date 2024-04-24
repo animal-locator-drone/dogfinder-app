@@ -26,7 +26,8 @@ const { get_missions } = storeToRefs(missions_store)
 
 
 const confirm_selection = () => {
-        missions_store.select_mission(missions_store.selected_mission_id).then(() => {
+        missions_store.select_mission(missions_store.selected_mission_id)
+        .then(() => {
                 router.push('/mission')
         }).catch((err) => {
                 console.error('Error selecting mission:', err)
