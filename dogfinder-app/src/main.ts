@@ -1,6 +1,10 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import PrimeView from 'primevue/config'
+
+// Primvue imports
+import PrimeVue from 'primevue/config';
+import PrimeOne from 'primevue/themes/primeone';
+import Aura from 'primevue/themes/primeone/aura';
 import ConfirmationService from 'primevue/confirmationservice'
 
 import App from './App.vue'
@@ -26,12 +30,14 @@ import Galleria from 'primevue/galleria'
 import Divider from 'primevue/divider'
 import Splitter from 'primevue/splitter'
 import SplitterPanel from 'primevue/splitterpanel'
+import Toolbar from 'primevue/toolbar'
+import Image from 'primevue/image'
 
 // FontAwesome components
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import { 
+import {
         faBatteryFull,
         faBatteryThreeQuarters,
         faBatteryHalf,
@@ -50,30 +56,10 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/leaflet.js';
 
 // PrimeVue CSS
-import 'primevue/resources/themes/saga-blue/theme.css';
-import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 import "primeflex/primeflex.css";
 
-// Vuetify Components
-import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
-import { aliases, mdi } from 'vuetify/iconsets/mdi'
-
 const app = createApp(App)
-
-const vuetify = createVuetify({
-        components,
-        directives,
-        icons: {
-                defaultSet: 'mdi',
-                aliases,
-                sets: {
-                        mdi
-                },
-        },
-})
 
 // PrimeVue components added to the app
 app.component('Dropdown', Dropdown);
@@ -97,6 +83,8 @@ app.component('Galleria', Galleria);
 app.component('Divider', Divider);
 app.component('Splitter', Splitter);
 app.component('SplitterPanel', SplitterPanel);
+app.component('Toolbar', Toolbar);
+app.component('Image', Image);
 
 // FontAwesome components added to the app
 library.add(
@@ -109,16 +97,29 @@ library.add(
         faMapMarkerAlt,
         faWifiStrong,
         faPlane
-        
+
 )
 
 app.component('FontAwesomeIcon', FontAwesomeIcon)
 
+app.use(PrimeVue, {
+        // Default theme configuration
+        theme: {
+                base: PrimeOne,
+                preset: Aura,
+                options: {
+                        prefix: 'p',
+                        darkModeSelector: "system",
+                        cssLayer: false
+                }
+        }
+});
 
-app.use(vuetify)
-app.use(PrimeView)
 app.use(ConfirmationService)
 app.use(createPinia())
 app.use(router)
+
+
+
 
 app.mount('#app')

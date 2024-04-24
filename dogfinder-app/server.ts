@@ -50,15 +50,19 @@ interface Mission {
 }
 
 app.get('/output_images/:image', (req: Request, res: Response) => {
-        res.sendFile(`/home/doge/Documents/src/detection-service/output_images/${req.params.image}`);
+        res.sendFile(`/home/animallocator/Documents/src/detection-service/output_images/${req.params.image}`);
 });
 
 app.get('/missions_available', async (req: Request, res: Response) => {
-        const missions_response: AxiosResponse<any, any> = await axios.get(
-                'http://localhost:8000/missions_available'
-        );
-        const missions: Mission[] = missions_response.data;
-        res.json({ missions });
+        axios.get('http://localhost:8000/missions_available')
+        .then((response) => {
+                const missions: Mission[] = response.data;
+                res.json({ missions });
+                return response;
+        }).catch((error) => {
+                console.error(error);
+                res.status(500).json({ error: 'Failed to fetch missions' });
+        });
 });
 
 app.post('/select_mission', (req: Request, res: Response) => {

@@ -1,15 +1,14 @@
 <template>
-        <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
-                <div class="text-3xl font-medium text-900 mb-3">Select A Search Mission</div>
-                <div class="font-medium text-500 mb-3">
-                        <Dropdown v-model="missions_store.selected_mission_id" :options="get_missions"
-                                optionValue="id" optionLabel="name" placeholder="Select a Mission" class="w-full md:w-14rem" />
-                        <Button @click="confirm_selection" label="Confirm Selection" class="mt-3" />
+        <div class="block">
+                <Dropdown v-model="missions_store.selected_mission_id" :options="get_missions" optionValue="id"
+                        optionLabel="name" placeholder="Select a Mission" class="w-full md:w-14rem" />
+                <Button @click="confirm_selection" label="Confirm Selection" class="mt-3" />
 
-                </div>
-                <div style="height: 150px" class="border-2 border-dashed surface-border">
-                        Map Preview Here
-                </div>
+                <Panel header="Mission Preview" class="mt-3">
+                        <div class="flex justify-center">
+                                <img src="https://via.placeholder.com/400" alt="Mission Preview" />
+                        </div>
+                </Panel>
         </div>
 </template>
 
@@ -27,8 +26,12 @@ const { get_missions } = storeToRefs(missions_store)
 
 
 const confirm_selection = () => {
-        console.log('Selected Mission:', missions_store.selected_mission_id)
-        router.push('/mission')
+        missions_store.select_mission(missions_store.selected_mission_id)
+        .then(() => {
+                router.push('/mission')
+        }).catch((err) => {
+                console.error('Error selecting mission:', err)
+        })
 }
 
 </script>

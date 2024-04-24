@@ -1,23 +1,21 @@
 <template>
-        <div v-if="!get_loading" class="">
-                <Splitter style="height: 30rem; width: 100%;">
-                        <SplitterPanel class="flex align-items-center " :size="25" :minSize="10">
-                                <DogCard />
-                        </SplitterPanel>
-                        <SplitterPanel class="flex" :size="75" :minSize="10" 
-                                style="overflow: auto; display: flex; flex-direction: column;">
-                                <DogGrid />
-                        </SplitterPanel>
-                </Splitter>
-
-
-        </div>
+<Splitter layout="horizontal" class="h-full w-full">
+        <SplitterPanel>
+                <div class="flex flex-column w-full h-full justify-center items-center">
+                        <DogCard />
+                </div>
+        </SplitterPanel>
+        <SplitterPanel :size="75">
+                <div class="flex flex-column w-full h-full justify-center items-center">
+                        <DogGrid />
+                </div>
+        </SplitterPanel>
+</Splitter>
 </template>
 
 <script setup lang="ts">
 import { use_detections_store } from '@/stores/detections';
 import { storeToRefs } from 'pinia';
-import DogGallery from '@/components/DogGallery.vue';
 import DogCard from '@/components/DogCard.vue';
 import DogGrid from '@/components/DogGrid.vue';
 

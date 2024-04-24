@@ -26,8 +26,10 @@ export const use_detections_store = defineStore('detections', {
                 get_detections(): Detection[] {
                         return this.detections;
                 },
-                get_selected_detection(): string | "" {
-                        return this.selected_detection;
+                get_selected_detection(): Detection | null {
+                        return this.detections.find(
+                                detection => detection.id === this.selected_detection
+                        ) || null;  
                 },
                 get_detection_by_id(): FnDetectionById {
                         return (id: string): Detection | null => {
