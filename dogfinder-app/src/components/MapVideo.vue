@@ -1,10 +1,7 @@
 <template>
-        <div v-if="map_view" class="main-view-video">
-                <VideoStreamBig />
-        </div>
-        <div v-else>
-                <MapViewBig />
-        </div>
+        <VideoStreamBig v-if="map_view" />
+
+        <MapViewBig v-else />
 
         <Dialog 
                 class="pipdialog"

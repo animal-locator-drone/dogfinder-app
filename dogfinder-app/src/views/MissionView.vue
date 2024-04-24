@@ -1,17 +1,15 @@
 <template>
         <Splitter layout="vertical" style="height: 80vh;">
-                <SplitterPanel
-
-                        class="flex flex-row flex-wrap" :size="25" :minSize="10">
-                        <div class="h-full">
-                        <MapVideo />
-                </div>
+                <SplitterPanel :size="25" :minSize="10">
+                        <div class="h-full justify-center items-center">
+                                <MapVideo />
+                        </div>
+                        
                 </SplitterPanel>
-                <SplitterPanel
-                        :size="75"
-                >
-                        <!-- DogFinder Component -->
-                        <DogFinder />
+                <SplitterPanel :size="75" class="w-full" style="height: 10vh;">
+                        <div class="h-full justify-center items-center">
+                                <DogFinder />
+                        </div>
                 </SplitterPanel>
         </Splitter>
         <!-- <div class="mapvideo-dogfinder-grid"> -->

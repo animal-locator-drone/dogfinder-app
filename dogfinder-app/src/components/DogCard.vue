@@ -1,5 +1,5 @@
 <template>
-        <div class="w-full h-auto m-0 p-1">
+        <div class="flex align-items-center w-full justify-content-center h-20rem bg-primary font-bold border-round m-2">
 
                 <Image 
                         v-if="get_selected_detection"
@@ -11,23 +11,25 @@
 
                 <h3 v-else>Please Select One</h3>
         </div>
-        <div class="w-full grid p-2">
-                <div class="col p-1 m-2">
+        <div class="flex flex-row align-items-center w-full justify-content-center h-5rem bg-primary font-bold border-round m-2">
+                <div class="flex w-full">
                         <Button 
                                 :disabled="!get_selected_detection"
                                 label="Yes" 
                                 icon="pi pi-check"
                                 severity="success"
                                 class="w-full"
+                                rounded
                         />
                 </div>
-                <div class="col p-1 m-2">
+                <div class="flex w-full">
                         <Button 
                                 :disabled="!get_selected_detection"
                                 label="No"
                                 icon="pi pi-times"
                                 severity="danger"
                                 class="w-full"
+                                rounded
                         />
                 </div>
         </div>

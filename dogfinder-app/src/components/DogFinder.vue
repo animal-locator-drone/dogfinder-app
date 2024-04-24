@@ -1,16 +1,16 @@
 <template>
-        <div v-if="!get_loading">
-                <Splitter layout="horizontal" style="height: 100%;"> 
-                        <SplitterPanel :size="25" :minSize="10">
-                                <DogCard />
-                        </SplitterPanel>
-                        <SplitterPanel>
-                                <DogGrid />
-                        </SplitterPanel>
-                </Splitter>
-
-
-        </div>
+<Splitter layout="horizontal" class="h-full w-full">
+        <SplitterPanel :size="25" :minSize="10">
+                <div class="flex flex-column w-full h-full justify-center items-center">
+                        <DogCard />
+                </div>
+        </SplitterPanel>
+        <SplitterPanel :size="75">
+                <div class="flex flex-column w-full h-full justify-center items-center">
+                        <DogGrid />
+                </div>
+        </SplitterPanel>
+</Splitter>
 </template>
 
 <script setup lang="ts">
