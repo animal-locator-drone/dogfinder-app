@@ -8,6 +8,16 @@ import http from 'http';
 import uuid from 'uuid';
 import multer from 'multer';
 import axios, { AxiosResponse } from 'axios';
+import { ConfigIniParser } from 'config-ini-parser';
+
+// Read the configuration file
+const init_content = fs.readFileSync('./config.ini', 'utf-8');
+
+const parser = new ConfigIniParser();
+parser.parse(init_content);
+
+const PORT = parser.get('app', 'port');
+const HOST = parser.get('app', 'host');
 
 // Create necessary directories
 fs.mkdirSync('./data', { recursive: true });
@@ -169,9 +179,6 @@ app.post('/upload_image', upload.single('image'), (req: Request, res: Response) 
 //         console.log(`Server is running at http://localhost:${PORT}`);
 // });
 
-const PORT = 3000;
-
-const HOST = '0.0.0.0'
 
 const server = http.createServer(app).listen(PORT, HOST, () => {
         console.log(`Server is running at http://${HOST}:${PORT}`);
