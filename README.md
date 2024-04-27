@@ -39,6 +39,10 @@ frontend app plus backend server for animal locator drone
    2. or do this with vscode
 4. install package dependencies
    1. `yarn`
+5. setup your config file
+   1. copy the `.env.example` file to `.env`
+   2. fill in the values in the `.env` file
+   3. You may need to set `VITE_SOCKET_URL` to the correct value
 
 #### Running the code in development mode
 
