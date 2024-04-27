@@ -8,10 +8,20 @@ import http from 'http';
 import uuid from 'uuid';
 import multer from 'multer';
 import axios, { AxiosResponse } from 'axios';
+import { ConfigIniParser } from 'config-ini-parser';
+
+// Read the configuration file
+const init_content = fs.readFileSync('./config.ini', 'utf-8');
+
+const parser = new ConfigIniParser();
+parser.parse(init_content);
+
+const PORT = parser.get('app', 'port');
+const HOST = parser.get('app', 'host');
 
 // Create necessary directories
 fs.mkdirSync('./data', { recursive: true });
-fs.mkdirSync('./output_images', { recursive: true });
+fs.mkdirSync('./public/output_images', { recursive: true });
 
 
 // Initialize a new CSV for this session with a unique id 
@@ -26,7 +36,7 @@ const app: Express = express();
 // Multer setup
 const storage: multer.StorageEngine = multer.diskStorage({
         destination: (req, file, cb) => {
-                cb(null, './output_images/');
+                cb(null, './public/output_images/');
         },
         filename: (req, file, cb) => {
                 cb(null, file.originalname);
@@ -49,9 +59,7 @@ interface Mission {
         path_preview: string;
 }
 
-app.get('/output_images/:image', (req: Request, res: Response) => {
-        res.sendFile(`/home/animallocator/Documents/src/detection-service/output_images/${req.params.image}`);
-});
+app.use(express.static('./public'));
 
 app.get('/missions_available', async (req: Request, res: Response) => {
         axios.get('http://localhost:8000/missions_available')
@@ -169,9 +177,6 @@ app.post('/upload_image', upload.single('image'), (req: Request, res: Response) 
 //         console.log(`Server is running at http://localhost:${PORT}`);
 // });
 
-const PORT = 3000;
-
-const HOST = '0.0.0.0'
 
 const server = http.createServer(app).listen(PORT, HOST, () => {
         console.log(`Server is running at http://${HOST}:${PORT}`);
