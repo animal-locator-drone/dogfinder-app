@@ -34,3 +34,5 @@ data/
 
 # ignore output_images directory
 output_images/
+
+public/output_images/
