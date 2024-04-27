@@ -21,7 +21,7 @@ const HOST = parser.get('app', 'host');
 
 // Create necessary directories
 fs.mkdirSync('./data', { recursive: true });
-fs.mkdirSync('./output_images', { recursive: true });
+fs.mkdirSync('./public/output_images', { recursive: true });
 
 
 // Initialize a new CSV for this session with a unique id 
@@ -36,7 +36,7 @@ const app: Express = express();
 // Multer setup
 const storage: multer.StorageEngine = multer.diskStorage({
         destination: (req, file, cb) => {
-                cb(null, './output_images/');
+                cb(null, './public/output_images/');
         },
         filename: (req, file, cb) => {
                 cb(null, file.originalname);
@@ -59,9 +59,7 @@ interface Mission {
         path_preview: string;
 }
 
-app.get('/output_images/:image', (req: Request, res: Response) => {
-        res.sendFile(`/home/animallocator/Documents/src/detection-service/output_images/${req.params.image}`);
-});
+app.use(express.static('./public'));
 
 app.get('/missions_available', async (req: Request, res: Response) => {
         axios.get('http://localhost:8000/missions_available')
