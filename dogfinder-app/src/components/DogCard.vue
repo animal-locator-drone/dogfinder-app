@@ -19,6 +19,7 @@
                                 severity="success"
                                 class="w-full"
                                 rounded
+                                @click="() => missions_store.track_dog('test_dog')"
                         />
                 </div>
                 <div class="flex w-full p-1">
@@ -37,8 +38,11 @@
 <script setup lang="ts">
 import { use_detections_store } from '@/stores/detections';
 import { storeToRefs } from 'pinia';
+import { use_missions_store } from '@/stores/missions';
 
 const detections_store = use_detections_store();
+const missions_store = use_missions_store();
+
 
 const {
         get_detections,
