@@ -73,6 +73,19 @@ app.get('/missions_available', async (req: Request, res: Response) => {
         });
 });
 
+app.post('/track_dog/:dog_id', (req: Request, res: Response) => {
+        axios.post(
+                'http://localhost:8000/track_dog/' + req.params.dog_id
+        ).then((response) => {
+                res.status(200).json({ status: 'Tracking dog' });
+                return response;
+        }
+        ).catch((error) => {
+                console.error(error);
+                res.status(500).json({ error: 'Failed to track dog' });
+        });
+});
+
 app.post('/select_mission/:mission_id', (req: Request, res: Response) => {
 
         axios.post(

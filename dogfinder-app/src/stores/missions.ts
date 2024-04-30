@@ -7,6 +7,7 @@ interface State {
         selected_mission_id: string | "";
         loading: boolean;
         loading_mission_status: boolean;
+        tracking_dog: boolean;
 
 }
 export interface Mission {
@@ -22,6 +23,7 @@ export const use_missions_store = defineStore('missions', {
                         selected_mission_id: "",
                         loading: true,
                         loading_mission_status: false,
+                        tracking_dog: false
                 }
         },
 
@@ -55,9 +57,12 @@ export const use_missions_store = defineStore('missions', {
                 },
 
                 async select_mission(id: string) {
+                        const mission_name: string = this.missions.find(
+                                mission => mission.id === id
+                        )?.name || 'Mission';
                         this.loading_mission_status = true;
                         axios.post(
-                                '/select_mission/' + id
+                                '/select_mission/' + mission_name
                         ).then((response) => {
                                 this.selected_mission_id = id;
                                 this.loading_mission_status = false;
@@ -65,7 +70,24 @@ export const use_missions_store = defineStore('missions', {
                         }).catch((error) => {
                                 console.error(error);
                                 this.loading_mission_status = false;
+                                console.log(error);
                                 throw new Error('Failed to select mission');
+                        });
+                        
+                        
+                },
+                async track_dog(id: string) {
+                        
+                        this.loading_mission_status = true;
+                        axios.post(
+                                '/track_dog/' + id
+                        ).then((response) => {
+                                
+                        }).catch((error) => {
+                                console.error(error);
+                                this.loading_mission_status = false;
+                                console.log(error);
+                                throw new Error('Failed to track dog');
                         });
                         
                         
