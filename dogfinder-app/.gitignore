@@ -36,3 +36,6 @@ data/
 output_images/
 
 public/output_images/
+videos/
+
+videos/.venv
