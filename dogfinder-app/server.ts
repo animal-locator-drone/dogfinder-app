@@ -9,6 +9,13 @@ import uuid from 'uuid';
 import multer from 'multer';
 import axios, { AxiosResponse } from 'axios';
 import { ConfigIniParser } from 'config-ini-parser';
+import { createReadStream } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 
 // Read the configuration file
 const init_content = fs.readFileSync('./config.ini', 'utf-8');
@@ -29,7 +36,9 @@ const csvName: string = v4();
 const csvStream = fs.createWriteStream(`./data/${csvName}.csv`);
 csvStream.write('id,lat,lon,time,images\n');
 
-ViteExpress.config({ mode: 'development' });
+ViteExpress.config({
+        mode: 'development'
+});
 
 const app: Express = express();
 
@@ -50,7 +59,27 @@ const upload = multer({ storage: storage });
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
+// Serve video file
+app.get('/video', (req, res) =>
+        {
+                const videoPath = join(__dirname, 'public', 'videos', 'drone.mp4');
+                const stream = createReadStream(videoPath);
+        
+                // Handle stream events: 'open', 'error', 'end'
+                stream.on('open', () =>
+                {
+                        res.writeHead(200, { 'Content-Type': 'video/mp4' });
+                        stream.pipe(res);
+                });
+        
+                stream.on('error', (err) =>
+                {
+                        res.status(404).send("File not found");
+                });
+        
+                // It's not necessary to handle 'end' as 'pipe' will automatically end the response.
+        });
+        
 
 // Routes
 interface Mission {
