@@ -79,7 +79,8 @@ frontend app plus backend server for animal locator drone
       1. This file is how the app is initialized and we can add other extensions to vue such as the vue-router
 4. `public`
    1. This is where the code that runs on the browser gets deployed.
-   2. You should never have to edit this folder this is outputted by vuejs
+   2. ~~You should never have to edit this folder this is outputted by vuejs~~
+   3. This folder also contains any static files you want to serve to the frontend such as images and videos. 
 5. `node_modules`
    1. this is where yarn packages are stored.
    2. Never touch these if you value your sanity.
