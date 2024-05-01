@@ -43,6 +43,9 @@ frontend app plus backend server for animal locator drone
    1. copy the `.env.example` file to `.env`
    2. fill in the values in the `.env` file
    3. You may need to set `VITE_SOCKET_URL` to the correct value
+6. Setup the videos folder with `drone.mp4`
+   1. Create a folder `dogfinder-app/dogfinder-app/public/videos`
+   2. Download an appropriate drone video and place it in there and call it `drone.mp4`
 
 #### Running the code in development mode
 
