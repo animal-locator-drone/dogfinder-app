@@ -9,7 +9,7 @@ import uuid from 'uuid';
 import multer from 'multer';
 import axios, { AxiosResponse } from 'axios';
 import { ConfigIniParser } from 'config-ini-parser';
-import { createReadStream } from 'fs';
+import { createReadStream, createWriteStream } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -113,6 +113,35 @@ app.post('/track_dog/:dog_id', (req: Request, res: Response) => {
                 console.error(error);
                 res.status(500).json({ error: 'Failed to track dog' });
         });
+});
+
+app.post('/dismiss_dog/:dog_id', (req: Request, res: Response) => {
+        const detections: Detection[] = [];
+
+        fs.createReadStream(`./data/${csvName}.csv`)
+                .pipe(csv())
+                .on('data', (row) => {
+                        detections.push({
+                                id: row.id,
+                                location: [parseFloat(row.lat), parseFloat(row.lon)],
+                                time: row.time,
+                                images: row.images.split(' ')
+                        });
+                })
+                .on('end', () => {
+                        console.log('CSV file successfully processed for dismiss dog');
+                });
+        createWriteStream(`./data/${csvName}.csv`, { flags: 'w' })
+                .write('id,lat,lon,time,images\n');
+        for (const detection of detections) {
+                if (detection.id !== req.params.dog_id) {
+                        csvStream.write(
+                                `${detection.id},${detection.location},${detection.time},${detection.images.join(' ')}\n`
+                        );
+                }
+        }
+        res.json({ status: "success" });
+
 });
 
 app.post('/select_mission/:mission_id', (req: Request, res: Response) => {
