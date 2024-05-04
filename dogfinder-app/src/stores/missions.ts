@@ -93,6 +93,22 @@ export const use_missions_store = defineStore('missions', {
                         
                 },
 
+                async resume_mission() {
+                        this.loading_mission_status = true;
+                        axios.post(
+                                '/resume_mission'
+                        ).then((response) => {
+                                this.loading_mission_status = false;
+                                return response;
+                        }).catch((error) => {
+                                console.error(error);
+                                this.loading_mission_status = false;
+                                console.log(error);
+                                throw new Error('Failed to resume mission');
+                        });
+                
+                },
+
 
                 new_mission(mission: Mission) {
                         this.missions.push(mission);

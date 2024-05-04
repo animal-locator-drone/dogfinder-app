@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import axios from 'axios';
 
 interface State {
         detections: Detection[];
@@ -55,6 +56,24 @@ export const use_detections_store = defineStore('detections', {
 
                 select_detection(id: string) {
                         this.selected_detection = id;
+                },
+
+                async dismiss_dog(id: string) {
+                        axios.post(
+                                '/dismiss_dog/' + id
+                        ).then((response) => {
+                        
+                                this.detections = this.detections.filter(
+                                        detection => detection.id !== id
+                                );
+                                this.selected_detection = "";
+                        }).catch((error) => {
+                                console.error(error);
+                                console.log(error);
+                                throw new Error('Failed to dismiss dog');
+                        });
+                        
+                        
                 },
 
                 new_detection(detection: Detection) {
