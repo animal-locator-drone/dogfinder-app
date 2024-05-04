@@ -6,6 +6,7 @@ import PrimeVue from 'primevue/config';
 import PrimeOne from 'primevue/themes/primeone';
 import Aura from 'primevue/themes/primeone/aura';
 import ConfirmationService from 'primevue/confirmationservice'
+import ToastService from 'primevue/toastservice';
 
 import App from './App.vue'
 import router from './router'
@@ -32,6 +33,7 @@ import Splitter from 'primevue/splitter'
 import SplitterPanel from 'primevue/splitterpanel'
 import Toolbar from 'primevue/toolbar'
 import Image from 'primevue/image'
+import Toast from 'primevue/toast';
 
 // FontAwesome components
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -85,6 +87,7 @@ app.component('Splitter', Splitter);
 app.component('SplitterPanel', SplitterPanel);
 app.component('Toolbar', Toolbar);
 app.component('Image', Image);
+app.component('Toast', Toast);
 
 // FontAwesome components added to the app
 library.add(
@@ -116,6 +119,7 @@ app.use(PrimeVue, {
 });
 
 app.use(ConfirmationService)
+app.use(ToastService);
 app.use(createPinia())
 app.use(router)
 
