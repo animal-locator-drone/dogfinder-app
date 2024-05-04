@@ -204,6 +204,18 @@ app.get('/detections', (req: Request, res: Response) => {
                 });
 });
 
+app.post('/resume_mission', (req: Request, res: Response) => {
+        axios.post(
+                'http://localhost:8000/resume_mission'
+        ).then((response) => {
+                res.status(200).json({ status: 'Mission Resumed' });
+                return response;
+        }).catch((error) => {
+                console.error(error);
+                res.status(500).json({ error: 'Failed to resume mission' });
+        });
+});
+
 
 app.post('/abort_mission', (req: Request, res: Response) => {
         // Make HTTP POST request to captain server
