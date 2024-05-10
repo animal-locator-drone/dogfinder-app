@@ -24,5 +24,11 @@ const languages = [
 
 ]
 
+if(selected_language.value == languages[1]) {
+        console.log("idk but it ")
+}
+ 
+console.log( languages[2])
+
 </script>
 
